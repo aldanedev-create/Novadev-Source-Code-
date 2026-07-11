@@ -211,7 +211,7 @@ See [Windows Installer And GUI](docs/windows-installer-and-gui.md).
 
 Start here:
 
-- [Mini Book: Building Custom Projects](docs/mini-book-custom-projects.md)
+- [Mini Book: Building Custom Projects](docs/how to custom build (book).md)
 - [Project-Specific Generation](docs/project-specific-generation.md)
 - [Project-Specific Generator Implementation Prompt](docs/prompts/novadev-1.1-project-specific-generators-implementation-prompt.md)
 - [Tailwind Styling](docs/tailwind-styling.md)
