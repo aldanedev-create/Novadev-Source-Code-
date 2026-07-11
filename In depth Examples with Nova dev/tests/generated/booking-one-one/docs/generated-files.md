@@ -1,0 +1,50 @@
+# Generated Files
+
+NovaDev wrote or updated these files:
+
+- `generated\booking-one-one\frontend\package.json`
+- `generated\booking-one-one\frontend\vite.config.js`
+- `generated\booking-one-one\frontend\index.html`
+- `generated\booking-one-one\frontend\README.md`
+- `generated\booking-one-one\frontend\src\main.js`
+- `generated\booking-one-one\frontend\src\App.vue`
+- `generated\booking-one-one\frontend\src\router\index.js`
+- `generated\booking-one-one\frontend\src\stores\appStore.js`
+- `generated\booking-one-one\frontend\src\services\api.js`
+- `generated\booking-one-one\frontend\src\assets\main.css`
+- `generated\booking-one-one\frontend\src\components\Sidebar.vue`
+- `generated\booking-one-one\frontend\src\components\Navbar.vue`
+- `generated\booking-one-one\frontend\src\components\DataTable.vue`
+- `generated\booking-one-one\frontend\src\components\FormBuilder.vue`
+- `generated\booking-one-one\frontend\src\components\StatCard.vue`
+- `generated\booking-one-one\frontend\src\components\ChartBlock.vue`
+- `generated\booking-one-one\frontend\src\components\HeroBlock.vue`
+- `generated\booking-one-one\frontend\src\components\RecordSection.vue`
+- `generated\booking-one-one\frontend\src\components\CatalogGrid.vue`
+- `generated\booking-one-one\frontend\src\components\PipelineBoard.vue`
+- `generated\booking-one-one\frontend\src\components\WorkflowResult.vue`
+- `generated\booking-one-one\frontend\tailwind.config.js`
+- `generated\booking-one-one\frontend\src\pages\Bookings.vue`
+- `generated\booking-one-one\backend\requirements.txt`
+- `generated\booking-one-one\backend\config.py`
+- `generated\booking-one-one\backend\models.py`
+- `generated\booking-one-one\backend\routes.py`
+- `generated\booking-one-one\backend\app.py`
+- `generated\booking-one-one\backend\README.md`
+- `generated\booking-one-one\README.md`
+- `generated\booking-one-one\Nova.toml`
+- `generated\booking-one-one\docs\architecture.md`
+- `generated\booking-one-one\docs\plugins.md`
+- `generated\booking-one-one\docs\custom-code.md`
+- `generated\booking-one-one\docs\project-ir.json`
+- `generated\booking-one-one\docs\mode.md`
+- `generated\booking-one-one\docs\styling.md`
+- `generated\booking-one-one\docs\workflows.md`
+- `generated\booking-one-one\docs\modules.md`
+- `generated\booking-one-one\novadev.project.json`
+- `generated\booking-one-one\backend\database.db`
+- `generated\booking-one-one\backend\modules\booking_tools.py`
+- `generated\booking-one-one\backend\modules\__init__.py`
+- `generated\booking-one-one\backend\routes.py`
+- `generated\booking-one-one\backend\workflows\__init__.py`
+- `generated\booking-one-one\backend\workflows\create_booking.py`

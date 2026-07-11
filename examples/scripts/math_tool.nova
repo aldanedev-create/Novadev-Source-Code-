@@ -1,0 +1,20 @@
+use Nova.math
+use Nova.statistics
+
+let numbers = [4, 9, 16, 25]
+
+for number in numbers {
+    let root = Nova.math.sqrt(number)
+    print("sqrt({number}) = {root}")
+}
+
+let pair = ("mean", Nova.statistics.mean(numbers))
+print(pair)
+
+python {
+    import math
+    import statistics
+
+    result = math.sqrt(81)
+    print(result)
+}

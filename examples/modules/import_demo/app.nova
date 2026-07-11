@@ -1,0 +1,8 @@
+import database.*
+import pages.*
+
+app ImportDemo {
+    frontend Vue
+    backend Flask
+    database SQLite
+}

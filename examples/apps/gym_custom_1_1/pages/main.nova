@@ -1,0 +1,10 @@
+page Members {
+    type dashboard
+    section Members from Member
+    table Member {
+        columns name, email, plan
+        actions view, edit
+    }
+}
+
+export Members

@@ -1,0 +1,361 @@
+:root {
+    --bg: #101114;
+    --panel: #181b20;
+    --panel-alt: #22262d;
+    --text: #f4f6f8;
+    --muted: #9aa4b2;
+    --border: #303640;
+    --accent: #45d6b5;
+    --accent-alt: #f4b860;
+    --danger: #ff6b6b;
+}
+
+body.light {
+    --bg: #f6f7f9;
+    --panel: #ffffff;
+    --panel-alt: #eef1f4;
+    --text: #14161a;
+    --muted: #667085;
+    --border: #d9dee7;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    letter-spacing: 0;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.app-shell {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    min-height: 100vh;
+}
+
+.sidebar {
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    padding: 18px;
+}
+
+.brand {
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.brand-mark {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    background: var(--accent);
+    color: #061014;
+    font-weight: 800;
+}
+
+.brand strong,
+.brand small {
+    display: block;
+    overflow-wrap: anywhere;
+}
+
+.brand small,
+.eyebrow,
+.panel-heading span,
+.metric-card span,
+.toolbar label {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.nav-list,
+.inline-links {
+    display: grid;
+    gap: 8px;
+}
+
+.nav-link,
+.inline-links a {
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: var(--text);
+    text-decoration: none;
+    border: 1px solid transparent;
+    overflow-wrap: anywhere;
+}
+
+.nav-link.active,
+.nav-link:hover,
+.inline-links a:hover {
+    background: var(--panel-alt);
+    border-color: var(--border);
+}
+
+.workspace {
+    min-width: 0;
+    padding: 20px;
+}
+
+.topbar {
+    max-width: 1180px;
+    margin: 0 auto 16px;
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    align-items: center;
+}
+
+.topbar h1 {
+    margin: 2px 0 0;
+    font-size: 28px;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.eyebrow {
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.toolbar select,
+.toolbar button,
+.primary-button,
+.data-form button,
+.modal-panel button {
+    min-height: 38px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    padding: 8px 11px;
+    color: var(--text);
+    background: var(--panel-alt);
+}
+
+.primary-button,
+.data-form button {
+    color: #061014;
+    background: var(--accent);
+    border-color: var(--accent);
+    font-weight: 700;
+}
+
+.page {
+    display: none;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.page.active {
+    display: grid;
+    gap: 14px;
+}
+
+.metric-card,
+.panel,
+.empty-state,
+.access-warning {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.metric-card {
+    min-height: 124px;
+    padding: 18px;
+    display: grid;
+    align-content: space-between;
+}
+
+.metric-card strong {
+    font-size: 30px;
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+}
+
+.panel {
+    overflow: hidden;
+}
+
+.panel-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding: 14px 16px;
+}
+
+.panel-heading h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.table-scroll {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 620px;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    overflow-wrap: anywhere;
+}
+
+th {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.row-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.row-actions button {
+    min-height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--panel-alt);
+    color: var(--text);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    padding: 16px;
+}
+
+.form-field {
+    display: grid;
+    gap: 6px;
+}
+
+.form-field label {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.form-field input {
+    min-height: 40px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+    color: var(--text);
+    padding: 8px 10px;
+    width: 100%;
+}
+
+.form-actions {
+    padding: 0 16px 16px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+canvas {
+    width: 100%;
+    height: 260px;
+    display: block;
+    padding: 12px;
+}
+
+.access-warning {
+    display: none;
+    max-width: 1180px;
+    margin: 0 auto 14px;
+    padding: 14px;
+    color: var(--danger);
+}
+
+.access-warning.active {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.empty-state {
+    padding: 18px;
+    color: var(--muted);
+}
+
+dialog {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: var(--text);
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.modal-panel {
+    width: min(520px, calc(100vw - 32px));
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px;
+}
+
+@media (max-width: 860px) {
+    .app-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav-list {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    }
+
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .toolbar {
+        justify-content: flex-start;
+    }
+}

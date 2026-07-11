@@ -1,0 +1,17 @@
+page Checkout {
+    title "Checkout"
+    type checkout
+
+    card "Secure Checkout" {
+        value "Fast order review"
+    }
+
+    card "Delivery Window" {
+        value "Choose your day"
+    }
+
+    checkout Order {
+        fields customerName email address total status
+        submit "Place Order"
+    }
+}

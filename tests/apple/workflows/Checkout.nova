@@ -1,0 +1,5 @@
+workflow Checkout {
+    input Order
+    creates Order
+    notify Admin
+}

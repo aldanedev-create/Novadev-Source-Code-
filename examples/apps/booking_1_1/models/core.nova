@@ -1,0 +1,20 @@
+table Service {
+    id auto
+    name text
+    duration int
+}
+
+table Customer {
+    id auto
+    name text
+    email email
+}
+
+table Booking {
+    id auto
+    customerName text
+    serviceName text
+    status text
+}
+
+export Service

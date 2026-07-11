@@ -1,0 +1,124 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "NovaDev",
+  "scopeName": "source.novadev",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#operators"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.novadev",
+          "match": "//.*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.triple.double.novadev",
+          "begin": "\"\"\"",
+          "end": "\"\"\"",
+          "patterns": [
+            {
+              "name": "variable.other.interpolation.novadev",
+              "match": "\\{[^{}]+\\}"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.triple.single.novadev",
+          "begin": "'''",
+          "end": "'''",
+          "patterns": [
+            {
+              "name": "variable.other.interpolation.novadev",
+              "match": "\\{[^{}]+\\}"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.double.novadev",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.novadev",
+              "match": "\\\\."
+            },
+            {
+              "name": "variable.other.interpolation.novadev",
+              "match": "\\{[^{}\\n]+\\}"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.novadev",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.escape.novadev",
+              "match": "\\\\."
+            },
+            {
+              "name": "variable.other.interpolation.novadev",
+              "match": "\\{[^{}\\n]+\\}"
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.novadev",
+          "match": "\\b\\d+(\\.\\d+)?\\b"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.novadev",
+          "match": "\\b(if|else|elif|while|for|in|break|continue|return|try|catch)\\b"
+        },
+        {
+          "name": "keyword.declaration.novadev",
+          "match": "\\b(app|mode|table|page|route|theme|auth|workflow|module|function|class|let|import|export|plugin|custom|frontend|backend|database|project|generator|filesystem|folder|file)\\b"
+        },
+        {
+          "name": "support.function.novadev",
+          "match": "\\b(print|range|len|int|float|str|input)\\b"
+        },
+        {
+          "name": "constant.language.novadev",
+          "match": "\\b(true|false|nil|null)\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.novadev",
+          "match": "==|!=|>=|<=|&&|\\|\\||[+\\-*/=><]"
+        }
+      ]
+    }
+  }
+}

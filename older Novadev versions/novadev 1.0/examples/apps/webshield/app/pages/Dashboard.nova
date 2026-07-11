@@ -1,0 +1,12 @@
+page Dashboard {
+    title "WebShield Dashboard"
+    card "Scans" {
+        value Scan.count()
+    }
+    table Scan {
+        columns target, status, score
+        actions view, delete
+    }
+}
+
+export default Dashboard

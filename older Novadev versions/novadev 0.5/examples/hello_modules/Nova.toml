@@ -1,0 +1,6 @@
+name = "HelloModules"
+version = "0.5"
+frontend = "Vue"
+backend = "Flask"
+database = "SQLite"
+entry = "app.nova"

@@ -1,0 +1,11 @@
+import database.*
+import pages.*
+
+app HelloModules {
+    project {
+        frontend Vue
+        backend Flask
+        database SQLite
+        structure VueFlask
+    }
+}

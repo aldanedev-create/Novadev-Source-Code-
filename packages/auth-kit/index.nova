@@ -1,0 +1,21 @@
+# AuthKit package for NovaDev.
+# Import this package when a project needs starter auth models and route ideas.
+
+table AuthUser {
+    id auto
+    name text
+    email email unique
+    role text
+    password secure
+}
+
+auth AuthUser
+
+route GET "/api/me" {
+    require auth
+    return AuthUser.current()
+}
+
+function defaultRole() {
+    return "Member"
+}

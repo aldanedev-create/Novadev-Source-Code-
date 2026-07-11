@@ -1,0 +1,55 @@
+{
+  "name": "novadev-language",
+  "displayName": "NovaDev Language",
+  "description": "NovaDev language support, syntax highlighting, snippets, and ND file icon metadata for .nova files.",
+  "version": "1.1.0",
+  "publisher": "novadev",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Other"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "novadev",
+        "aliases": [
+          "NovaDev",
+          "nova"
+        ],
+        "extensions": [
+          ".nova"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icons/novadev.svg",
+          "dark": "./icons/novadev.svg"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "novadev",
+        "scopeName": "source.novadev",
+        "path": "./syntaxes/novadev.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "novadev",
+        "path": "./snippets/novadev.code-snippets"
+      }
+    ],
+    "iconThemes": [
+      {
+        "id": "novadev-icons",
+        "label": "NovaDev Icons",
+        "path": "./icons/novadev-icon-theme.json"
+      }
+    ]
+  }
+}

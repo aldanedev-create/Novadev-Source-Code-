@@ -1,0 +1,14 @@
+import models.*
+import pages.*
+import workflows.*
+import modules.*
+
+app SecurityOneOne {
+    project {
+        frontend Vue
+        backend Flask
+        database SQLite
+        structure VueFlask
+        mode security
+    }
+}

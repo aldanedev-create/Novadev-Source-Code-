@@ -1,0 +1,21 @@
+{
+  "name": "GymCustomOneOne",
+  "version": "1.1",
+  "frontend": "Vue",
+  "backend": "Flask",
+  "database": "SQLite",
+  "mode": "custom",
+  "styling": "Tailwind",
+  "style": {
+    "system": "Tailwind",
+    "mode": "custom",
+    "primary": "#2563eb",
+    "accent": "#0f172a",
+    "surface": "#f8fafc",
+    "radius": "medium",
+    "density": "comfortable"
+  },
+  "plugins": [],
+  "customCode": [],
+  "discoveries": []
+}

@@ -1,0 +1,10 @@
+module GymTools python {
+    export status
+
+    python """
+def status(**payload):
+    return "checked-in"
+"""
+}
+
+export GymTools

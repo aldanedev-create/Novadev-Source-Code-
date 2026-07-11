@@ -1,0 +1,21 @@
+page Settings {
+    title "Apple Settings"
+    type dashboard
+
+    card "Store Status" {
+        value "Open"
+    }
+
+    card "Delivery Region" {
+        value "Citywide"
+    }
+
+    card "Payment Mode" {
+        value "Online and Cash"
+    }
+
+    form Product {
+        fields name category price oldPrice image rating stock description badge
+        submit "Save Product"
+    }
+}

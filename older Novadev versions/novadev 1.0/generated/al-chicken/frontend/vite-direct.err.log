@@ -1,0 +1,23 @@
+node:internal/fs/watchers:321
+    const error = new UVException({
+                  ^
+
+Error: EBUSY: resource busy or locked, watch 'C:\Users\aldan\Downloads\novadev 0.2\generated\al-chicken\frontend\vite-start.pid'
+    at FSWatcher.<computed> (node:internal/fs/watchers:321:19)
+    at Object.watch (node:fs:2548:36)
+    at createFsWatchInstance (file:///C:/Users/aldan/Downloads/novadev%200.2/generated/al-chicken/frontend/node_modules/vite/dist/node/chunks/node.js:8831:16)
+    at setFsWatchListener (file:///C:/Users/aldan/Downloads/novadev%200.2/generated/al-chicken/frontend/node_modules/vite/dist/node/chunks/node.js:8873:14)
+    at NodeFsHandler._watchWithNodeFs (file:///C:/Users/aldan/Downloads/novadev%200.2/generated/al-chicken/frontend/node_modules/vite/dist/node/chunks/node.js:8987:20)
+    at NodeFsHandler._handleFile (file:///C:/Users/aldan/Downloads/novadev%200.2/generated/al-chicken/frontend/node_modules/vite/dist/node/chunks/node.js:9031:24)
+    at NodeFsHandler._addToNodeFs (file:///C:/Users/aldan/Downloads/novadev%200.2/generated/al-chicken/frontend/node_modules/vite/dist/node/chunks/node.js:9205:26)
+Emitted 'error' event on FSWatcher instance at:
+    at FSWatcher._handleError (file:///C:/Users/aldan/Downloads/novadev%200.2/generated/al-chicken/frontend/node_modules/vite/dist/node/chunks/node.js:10004:146)
+    at NodeFsHandler._addToNodeFs (file:///C:/Users/aldan/Downloads/novadev%200.2/generated/al-chicken/frontend/node_modules/vite/dist/node/chunks/node.js:9210:18) {
+  errno: -4082,
+  syscall: 'watch',
+  code: 'EBUSY',
+  path: 'C:\\Users\\aldan\\Downloads\\novadev 0.2\\generated\\al-chicken\\frontend\\vite-start.pid',
+  filename: 'C:\\Users\\aldan\\Downloads\\novadev 0.2\\generated\\al-chicken\\frontend\\vite-start.pid'
+}
+
+Node.js v24.18.0

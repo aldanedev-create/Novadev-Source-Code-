@@ -1,0 +1,26 @@
+page Home {
+    type landing
+    hero {
+        title "Church Media Center"
+        subtitle "A custom mode project with no domain defaults"
+    }
+    section Sermons from Sermon
+    form PrayerRequest {
+        fields name, message, status
+        submit "Send Prayer"
+    }
+}
+
+page Admin {
+    type dashboard
+    table Sermon {
+        columns title, speaker, videoUrl
+        actions view, edit
+    }
+    table PrayerRequest {
+        columns name, message, status
+        actions view, edit
+    }
+}
+
+export Home

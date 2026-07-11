@@ -1,0 +1,26 @@
+table Client {
+    id auto
+    name text
+    email email
+}
+
+table Contact {
+    id auto
+    name text
+    clientName text
+}
+
+table Deal {
+    id auto
+    clientName text
+    value money
+    stage text
+}
+
+table Task {
+    id auto
+    title text
+    status text
+}
+
+export Client

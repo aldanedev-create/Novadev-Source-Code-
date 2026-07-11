@@ -1,0 +1,21 @@
+page Home {
+    type marketing
+    hero {
+        title "Build with confidence"
+        subtitle "Construction-specific code generated from ProjectIR"
+        action "Request Quote" to "/quote"
+    }
+    section Services from Service
+    section Projects from Project
+    estimator ConstructionEstimator.estimate
+}
+
+page Quote {
+    type form
+    form Lead {
+        fields name, email, squareFeet, finish
+        submit "Estimate Project"
+    }
+}
+
+export Home

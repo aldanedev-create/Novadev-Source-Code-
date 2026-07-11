@@ -1,0 +1,11 @@
+let tasks = ["lint", "build", "test"]
+
+for task in tasks {
+    print("Running automation step: {task}")
+}
+
+try {
+    print(missingTask)
+} catch NovaNameError {
+    print("Handled missing automation variable")
+}

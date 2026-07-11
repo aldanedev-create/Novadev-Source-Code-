@@ -1,0 +1,172 @@
+{
+  "name": "GymCustomOneOne",
+  "mode": "custom",
+  "frontend": "Vue",
+  "backend": "Flask",
+  "database": "SQLite",
+  "styling": "Tailwind",
+  "style": {
+    "system": "Tailwind",
+    "mode": "custom",
+    "primary": "#2563eb",
+    "accent": "#0f172a",
+    "surface": "#f8fafc",
+    "text": "#111827",
+    "muted": "#64748b",
+    "radius": "medium",
+    "density": "comfortable",
+    "font": "Inter",
+    "shell": "min-h-screen bg-[var(--nova-surface)] text-[var(--nova-text)] lg:grid lg:grid-cols-[17rem_1fr]",
+    "sidebar": "bg-slate-950 text-white p-5 flex flex-col gap-5",
+    "topbar": "min-h-16 border-b border-slate-200 bg-white/90 px-6 flex items-center justify-between gap-4 backdrop-blur",
+    "page": "p-6 grid content-start gap-5",
+    "hero": "min-h-72 rounded-nova bg-gradient-to-br from-slate-950 via-blue-900 to-cyan-700 p-8 text-white grid content-end gap-4",
+    "panel": "overflow-hidden rounded-nova border border-slate-200 bg-white shadow-sm",
+    "card": "rounded-nova border border-slate-200 bg-white p-5 shadow-sm",
+    "button": "inline-flex min-h-10 items-center justify-center rounded-nova bg-[var(--nova-primary)] px-4 py-2 font-semibold text-white hover:opacity-90",
+    "ghost_button": "inline-flex min-h-10 items-center justify-center rounded-nova bg-slate-100 px-4 py-2 font-semibold text-slate-700 hover:bg-slate-200",
+    "input": "min-h-10 rounded-nova border border-slate-300 bg-white px-3 py-2 outline-none focus:border-[var(--nova-primary)]",
+    "table": "w-full border-collapse text-left text-sm",
+    "badge": "rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700",
+    "notes": [
+      "style system: Tailwind",
+      "mode profile: custom",
+      "no theme overrides",
+      "css radius: 0.75rem"
+    ]
+  },
+  "entities": [
+    {
+      "name": "Member",
+      "fields": [
+        {
+          "name": "id",
+          "type": "auto",
+          "attributes": []
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "attributes": []
+        },
+        {
+          "name": "email",
+          "type": "email",
+          "attributes": []
+        },
+        {
+          "name": "plan",
+          "type": "text",
+          "attributes": []
+        }
+      ]
+    },
+    {
+      "name": "CheckIn",
+      "fields": [
+        {
+          "name": "id",
+          "type": "auto",
+          "attributes": []
+        },
+        {
+          "name": "memberName",
+          "type": "text",
+          "attributes": []
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "attributes": []
+        }
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "Members",
+      "title": "Members",
+      "type": "dashboard",
+      "route": "/members",
+      "sections": [
+        {
+          "name": "Members",
+          "source": "Member"
+        }
+      ],
+      "hero": {},
+      "components": [
+        {
+          "kind": "type",
+          "name": "dashboard",
+          "props": {}
+        },
+        {
+          "kind": "section",
+          "name": "Members",
+          "props": {
+            "source": "Member"
+          }
+        },
+        {
+          "kind": "table",
+          "name": "Member",
+          "props": {
+            "columns": [
+              "name",
+              "email",
+              "plan"
+            ],
+            "actions": [
+              "view",
+              "edit"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "workflows": [
+    {
+      "name": "MemberCheckIn",
+      "input": "Member",
+      "uses": "GymTools.status",
+      "creates": [
+        "CheckIn"
+      ],
+      "steps": [
+        {
+          "kind": "input",
+          "name": "Member",
+          "props": {}
+        },
+        {
+          "kind": "uses",
+          "name": "GymTools.status",
+          "props": {}
+        },
+        {
+          "kind": "creates",
+          "name": "CheckIn",
+          "props": {}
+        }
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "name": "GymTools",
+      "language": "python",
+      "code": "\ndef status(**payload):\n    return \"checked-in\"\n",
+      "exports": [
+        "status"
+      ]
+    }
+  ],
+  "custom_code": [],
+  "routes": [],
+  "plugins": [],
+  "notes": [
+    "mode custom: no domain defaults are added; only declared project intent is generated."
+  ]
+}

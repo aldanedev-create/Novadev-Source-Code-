@@ -1,0 +1,29 @@
+table Service {
+    id auto
+    name text
+    description text
+    startingPrice money
+}
+
+table Project {
+    id auto
+    name text
+    location text
+    budget money
+}
+
+table Lead {
+    id auto
+    name text
+    email email
+    squareFeet number
+    finish text
+}
+
+table Estimate {
+    id auto
+    leadName text
+    amount money
+}
+
+export Service

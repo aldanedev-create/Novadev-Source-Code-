@@ -1,0 +1,14 @@
+module DealTools python {
+    export next_stage
+
+    python """
+def next_stage(**payload):
+    current = str(payload.get("stage", "new")).lower()
+    order = ["new", "qualified", "proposal", "won"]
+    if current in order and order.index(current) + 1 < len(order):
+        return order[order.index(current) + 1]
+    return current
+"""
+}
+
+export DealTools

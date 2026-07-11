@@ -1,0 +1,10 @@
+module BookingTools python {
+    export confirm
+
+    python """
+def confirm(**payload):
+    return "confirmed"
+"""
+}
+
+export BookingTools

@@ -1,0 +1,33 @@
+# DashboardKit package for NovaDev.
+# Use these declarations as starter ideas for admin-style projects.
+
+theme CleanDashboard {
+    background "#f6f8fc"
+    panel "#ffffff"
+    accent "#2563eb"
+    accent_alt "#0f9f9a"
+    text "#121a2a"
+    muted "#536174"
+    border "#dce4ef"
+}
+
+page AdminDashboard {
+    title "Admin Dashboard"
+
+    navbar {
+        link "Dashboard" to "/dashboard"
+        link "Reports" to "/reports"
+    }
+
+    card "Total Records" {
+        value "0"
+    }
+
+    card "Open Tasks" {
+        value "0"
+    }
+}
+
+function dashboardTitle(name) {
+    return name + " Dashboard"
+}

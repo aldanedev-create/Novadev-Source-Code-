@@ -1,0 +1,14 @@
+{
+  "name": "novadev-express-backend",
+  "version": "0.5.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "latest",
+    "cors": "latest",
+    "pg": "latest"
+  }
+}

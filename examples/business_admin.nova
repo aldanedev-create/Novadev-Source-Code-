@@ -1,0 +1,105 @@
+# A small full-stack NovaDev app.
+app BusinessAdmin {
+    theme CyberDark {
+        background "#101114"
+        panel "#181b20"
+        panel_alt "#22262d"
+        accent "#45d6b5"
+        accent_alt "#f4b860"
+        text "#f4f6f8"
+        muted "#9aa4b2"
+        border "#303640"
+        danger "#ff6b6b"
+    }
+
+    use theme CyberDark
+
+    table User {
+        id auto
+        name text
+        email email unique
+        role text
+        password secure
+    }
+
+    auth User
+
+    table Product {
+        id auto
+        name text
+        price money
+        stock int
+        active boolean
+    }
+
+    table Order {
+        id auto
+        customer text
+        total money
+        status text
+    }
+
+    page Dashboard {
+        require role Admin
+        title "Business Dashboard"
+
+        navbar {
+            link "Dashboard" to "/dashboard"
+            link "Products" to "/products"
+        }
+
+        card "Products" {
+            value Product.count()
+        }
+
+        card "Orders" {
+            value Order.count()
+        }
+
+        chart Order {
+            type bar
+            x customer
+            y total
+        }
+
+        table Product {
+            columns name, price, stock, active
+            actions view, edit, delete
+        }
+    }
+
+    page Products {
+        require role Admin
+        title "Product Manager"
+
+        sidebar {
+            link "Dashboard" to "/dashboard"
+            link "Products" to "/products"
+        }
+
+        form Product {
+            fields name, price, stock, active
+            submit "Add Product"
+        }
+
+        table Product {
+            columns name, price, stock, active
+            actions view, delete
+        }
+
+        modal "Product Help" {
+            text "Use this page to add, inspect, and remove product rows."
+            button "Got it"
+        }
+    }
+
+    route GET "/api/products" {
+        require role Admin
+        return Product.all()
+    }
+
+    route GET "/api/orders/count" {
+        require auth
+        return Order.count()
+    }
+}

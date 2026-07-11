@@ -1,0 +1,59 @@
+app ProductDesk {
+    table Product {
+        id auto
+        name text
+        price money
+        stock int
+    }
+
+    page Products {
+        title "Products"
+        form Product
+        table Product {
+            columns name, price, stock
+            actions view, edit, delete
+        }
+    }
+}
+
+
+app ALChicken {
+    table Product {
+        id auto
+        name text
+        category text
+        description text
+        price money
+        stock int
+        image image
+        active boolean default true
+    }
+
+    table Customer {
+        id auto
+        fullname text
+        email text unique
+        phone text
+        address text
+    }
+
+    table CustomerOrder {
+        id auto
+        customer Customer
+        total money
+        status enum(Pending, Paid, Preparing, Delivered, Cancelled)
+        payment_method text
+        created_at datetime default now
+    }
+
+    table OrderItem {
+        id auto
+        order CustomerOrder
+        product Product
+        quantity int
+        price money
+        subtotal money
+    }
+
+    auth Admin
+}

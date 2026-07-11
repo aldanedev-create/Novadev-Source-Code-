@@ -1,0 +1,8 @@
+workflow RunScan {
+    input Target
+    uses ScanTools.score
+    creates Scan
+    creates Report
+}
+
+export RunScan

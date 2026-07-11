@@ -1,0 +1,11 @@
+module ScanTools python {
+    export score
+
+    python """
+def score(**payload):
+    url = str(payload.get("url", ""))
+    return 90 if url.startswith("https://") else 50
+"""
+}
+
+export ScanTools

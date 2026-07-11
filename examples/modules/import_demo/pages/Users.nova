@@ -1,0 +1,9 @@
+page Users {
+    title "Users"
+    table User {
+        columns name, email
+        actions view, delete
+    }
+}
+
+export default Users

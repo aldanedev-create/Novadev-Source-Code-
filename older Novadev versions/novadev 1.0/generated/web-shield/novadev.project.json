@@ -1,0 +1,30 @@
+{
+  "name": "WebShield",
+  "version": "1.0",
+  "frontend": "Vue",
+  "backend": "Flask",
+  "database": "SQLite",
+  "mode": "app",
+  "plugins": [
+    "@nova/auth",
+    "@nova/charts"
+  ],
+  "customCode": [
+    {
+      "language": "python",
+      "target": "backend",
+      "bytes": 56
+    },
+    {
+      "language": "js",
+      "target": "frontend",
+      "bytes": 49
+    },
+    {
+      "language": "css",
+      "target": "css",
+      "bytes": 41
+    }
+  ],
+  "discoveries": []
+}

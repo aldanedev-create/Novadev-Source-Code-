@@ -1,0 +1,8 @@
+workflow EstimateRequest {
+    input Lead
+    uses ConstructionEstimator.estimate
+    creates Estimate
+    notify Admin
+}
+
+export EstimateRequest

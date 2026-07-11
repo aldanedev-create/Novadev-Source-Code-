@@ -1,0 +1,154 @@
+# NovaDev e-commerce store app.
+app NovaCommerce {
+    theme RetailLight {
+        background "#f5f7fb"
+        panel "#ffffff"
+        panel_alt "#eef3f8"
+        accent "#1fbf8f"
+        accent_alt "#f6b34b"
+        text "#17202a"
+        muted "#697586"
+        border "#d9e2ec"
+        danger "#d64545"
+    }
+
+    use theme RetailLight
+
+    table Customer {
+        id auto
+        customerName text
+        email email unique
+        address text
+        phone text
+    }
+
+    auth Customer
+
+    table Product {
+        id auto
+        name text
+        description text
+        category text
+        price money
+        stock int
+        active boolean
+    }
+
+    table CartItem {
+        id auto
+        productId int
+        productName text
+        price money
+        quantity int
+    }
+
+    table Order {
+        id auto
+        customerName text
+        email email
+        address text
+        total money
+        status text
+    }
+
+    table OrderItem {
+        id auto
+        orderId int
+        productId int
+        productName text
+        price money
+        quantity int
+    }
+
+    page Shop {
+        title "NovaCommerce Store"
+
+        navbar {
+            link "Shop" to "/shop"
+            link "Cart" to "/cart"
+            link "Admin" to "/admin"
+        }
+
+        card "Products In Stock" {
+            value Product.count()
+        }
+
+        catalog Product {
+            fields name, description, category, price, stock
+            actions add_to_cart
+        }
+    }
+
+    page Cart {
+        title "Cart And Checkout"
+
+        navbar {
+            link "Shop" to "/shop"
+            link "Cart" to "/cart"
+            link "Orders" to "/orders"
+        }
+
+        cart CartItem {
+            fields productName, price, quantity
+        }
+
+        checkout Order {
+            fields customerName, email, address
+            submit "Place Order"
+        }
+    }
+
+    page Orders {
+        title "Order History"
+
+        table Order {
+            columns customerName, email, total, status
+            actions view
+        }
+
+        table OrderItem {
+            columns orderId, productName, price, quantity
+            actions view
+        }
+    }
+
+    page Admin {
+        require role Admin
+        title "Store Admin"
+
+        card "Orders" {
+            value Order.count()
+        }
+
+        form Product {
+            fields name, description, category, price, stock, active
+            submit "Add Product"
+        }
+
+        table Product {
+            columns name, category, price, stock, active
+            actions view, edit, delete
+        }
+
+        table Customer {
+            columns customerName, email, phone
+            actions view
+        }
+    }
+
+    route GET "/api/products" {
+        return Product.all()
+    }
+
+    route GET "/api/orders" {
+        return Order.all()
+    }
+
+    route GET "/api/cart-items" {
+        return CartItem.all()
+    }
+
+    route GET "/api/orders/count" {
+        return Order.count()
+    }
+}

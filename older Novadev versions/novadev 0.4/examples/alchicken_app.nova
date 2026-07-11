@@ -1,0 +1,157 @@
+# A NovaDev 0.4 e-commerce store app.
+# Build it with:
+#   python nova.py build examples/alchicken_app.nova
+# Or inside the shell:
+#   .build examples/alchicken_app.nova
+
+app ALChickenStore {
+    stack JQueryFlask
+    database sqlite
+    project ecommerce
+
+    theme MarketFresh {
+        primary "#0f766e"
+        accent "#f59e0b"
+        background "#f8fafc"
+        surface "#ffffff"
+        text "#0f172a"
+    }
+    use theme MarketFresh
+
+    auth Customer
+
+    table Customer {
+        id auto
+        name text
+        email email unique
+        password password secure
+        role text
+    }
+
+    table Product {
+        id auto
+        name text
+        description text
+        category text
+        price money
+        stock number
+        active boolean
+    }
+
+    table CartItem {
+        id auto
+        productId number
+        name text
+        price money
+        quantity number
+    }
+
+    table Order {
+        id auto
+        customerName text
+        email email
+        address text
+        status text
+        total money
+    }
+
+    table OrderItem {
+        id auto
+        orderId number
+        productId number
+        name text
+        quantity number
+        price money
+    }
+
+    page Storefront {
+        title "ALChicken Store"
+        navbar {
+            link "Shop" to "/storefront"
+            link "Cart" to "/cart"
+            link "Admin" to "/admin"
+        }
+        card "Fresh Products" {
+            value Product.count()
+        }
+        catalog Product {
+            fields name description category price stock
+            actions add_to_cart
+        }
+    }
+
+    page Cart {
+        title "Shopping Cart"
+        navbar {
+            link "Shop" to "/storefront"
+            link "Checkout" to "/checkout"
+        }
+        cart CartItem {
+            fields name price quantity
+        }
+    }
+
+    page Checkout {
+        title "Checkout"
+        checkout Order {
+            fields customerName email address
+            submit "Place Order"
+        }
+    }
+
+    page Admin {
+        title "Store Admin"
+        require role Admin
+        sidebar {
+            link "Products" to "/admin"
+            link "Orders" to "/orders"
+        }
+        card "Orders" {
+            value Order.count()
+        }
+        table Product {
+            columns id name category price stock active
+            actions create edit delete
+        }
+        form Product {
+            fields name description category price stock active
+            submit "Save Product"
+        }
+    }
+
+    page Orders {
+        title "Orders"
+        require role Admin
+        table Order {
+            columns id customerName email status total
+            actions edit delete
+        }
+    }
+
+    route GET "/api/health" {
+        return "ALChickenStore is running"
+    }
+
+    filesystem {
+        template JQueryFlask
+        folder docs {
+            file "store-plan.md" {
+                text """
+# ALChicken Store Plan
+
+This app was generated from NovaDev source.
+
+- Storefront lists products.
+- Cart stores selected items.
+- Checkout creates orders through Flask.
+- Admin pages manage products and orders.
+"""
+            }
+        }
+        ignore {
+            "__pycache__/"
+            "*.pyc"
+            "database.db"
+        }
+    }
+}

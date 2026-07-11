@@ -1,0 +1,7 @@
+workflow MemberCheckIn {
+    input Member
+    uses GymTools.status
+    creates CheckIn
+}
+
+export MemberCheckIn

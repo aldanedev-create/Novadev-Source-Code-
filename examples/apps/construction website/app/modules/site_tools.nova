@@ -1,0 +1,10 @@
+python """
+import math
+
+def roof_pitch_factor(rise, run):
+    return round(math.sqrt(float(rise) ** 2 + float(run) ** 2) / float(run), 3)
+
+print("Construction Python helper loaded through NovaDev")
+"""
+
+export site_tools

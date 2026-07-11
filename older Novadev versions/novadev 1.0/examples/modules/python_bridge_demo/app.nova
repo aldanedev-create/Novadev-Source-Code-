@@ -1,0 +1,8 @@
+use Nova.math
+use Nova.random
+
+let answer = Nova.math.sqrt(49)
+let otp = Nova.random.randint(100000, 999999)
+
+print(answer)
+print(otp)

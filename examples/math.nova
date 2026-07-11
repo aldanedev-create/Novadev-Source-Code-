@@ -1,0 +1,4 @@
+use Nova.math
+
+let root = Nova.math.sqrt(81)
+print("Square root: {root}")

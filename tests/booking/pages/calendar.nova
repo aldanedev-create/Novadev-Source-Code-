@@ -1,0 +1,14 @@
+page Bookings {
+    type booking
+    hero {
+        title "Booking Calendar"
+        subtitle "Booking-specific workflow example"
+    }
+    section Services from Service
+    form Booking {
+        fields customerName, serviceName, status
+        submit "Book"
+    }
+}
+
+export Bookings

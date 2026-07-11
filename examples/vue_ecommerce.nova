@@ -1,0 +1,50 @@
+app VueEcommerce {
+    stack VueExpress
+    database PostgreSQL
+
+    table Product {
+        id auto
+        name text
+        category text
+        price money
+        stock int
+    }
+
+    table CartItem {
+        id auto
+        product_id int
+        name text
+        price money
+        quantity int
+    }
+
+    table Order {
+        id auto
+        customer_name text
+        email email
+        total money
+        status text
+    }
+
+    page Dashboard {
+        title "Store Dashboard"
+        card "Products" {
+            value Product.count()
+        }
+        card "Orders" {
+            value Order.count()
+        }
+    }
+
+    page Products {
+        title "Products"
+        form Product {
+            fields name, category, price, stock
+            submit "Add Product"
+        }
+        table Product {
+            columns name, category, price, stock
+            actions edit, delete
+        }
+    }
+}

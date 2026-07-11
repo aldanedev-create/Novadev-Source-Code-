@@ -1,0 +1,12 @@
+module CartMath python {
+    export calculate_total
+
+    python """
+def calculate_total(**payload):
+    price = float(payload.get("price", 0))
+    quantity = int(payload.get("quantity", 1))
+    return round(price * quantity, 2)
+"""
+}
+
+export CartMath

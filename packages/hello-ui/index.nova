@@ -1,0 +1,13 @@
+# hello-ui package
+# A tiny package developers can install with:
+# python novapm.py install packages/hello-ui
+
+page HelloPackagePage {
+    type landing
+    hero {
+        title "Hello from a NovaDev package"
+        subtitle "Packages can contain reusable .nova declarations."
+    }
+}
+
+export HelloPackagePage

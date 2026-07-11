@@ -1,0 +1,19 @@
+page AdminDashboard {
+    title "Construction Admin"
+
+    card "Leads" {
+        value Lead.count()
+    }
+
+    card "Projects" {
+        value Project.count()
+    }
+
+    chart Project {
+        type bar
+        x serviceType
+        y budget
+    }
+}
+
+export AdminDashboard

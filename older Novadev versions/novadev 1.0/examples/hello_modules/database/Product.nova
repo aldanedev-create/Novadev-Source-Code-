@@ -1,0 +1,8 @@
+table Product {
+    id auto
+    name text
+    price money
+    stock int
+}
+
+export Product

@@ -1,0 +1,8 @@
+workflow SubmitPrayer {
+    input PrayerRequest
+    uses PrayerTools.clean_message
+    creates PrayerRequest
+    notify Admin
+}
+
+export SubmitPrayer

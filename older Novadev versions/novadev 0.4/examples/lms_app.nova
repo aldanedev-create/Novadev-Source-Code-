@@ -1,0 +1,37 @@
+app NovaLMS {
+    stack JQueryFlask
+    database sqlite
+    project learning
+
+    table Course {
+        id auto
+        title text
+        instructor text
+        price money
+        active boolean
+    }
+
+    table Enrollment {
+        id auto
+        studentName text
+        email email
+        courseId number
+        status text
+    }
+
+    page Courses {
+        title "Course Catalog"
+        catalog Course {
+            fields title instructor price active
+            actions add_to_cart
+        }
+    }
+
+    page Enrollments {
+        title "Enrollments"
+        table Enrollment {
+            columns id studentName email courseId status
+            actions create edit delete
+        }
+    }
+}

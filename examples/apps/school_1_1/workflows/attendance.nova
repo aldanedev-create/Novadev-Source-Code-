@@ -1,0 +1,7 @@
+workflow MarkAttendance {
+    input Attendance
+    uses AttendanceTools.normalize_status
+    creates Attendance
+}
+
+export MarkAttendance

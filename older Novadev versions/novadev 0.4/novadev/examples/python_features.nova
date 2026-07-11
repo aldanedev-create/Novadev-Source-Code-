@@ -1,0 +1,12 @@
+# Run from the project root:
+#   python nova.py run novadev/examples/python_features.nova
+
+let name = "NovaDev"
+print("Hello {name} 0.4")
+
+let items = ["lexer", "parser", "runtime"]
+items.add("generator")
+
+for item in items {
+    print(item)
+}

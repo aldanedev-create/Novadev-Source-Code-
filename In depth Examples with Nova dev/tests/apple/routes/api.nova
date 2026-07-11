@@ -1,0 +1,11 @@
+route GET "/api/products" {
+    return Product.all()
+}
+
+route GET "/api/cart" {
+    return CartItem.all()
+}
+
+route POST "/api/orders" {
+    return "Order created"
+}

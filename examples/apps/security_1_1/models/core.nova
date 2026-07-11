@@ -1,0 +1,25 @@
+table Target {
+    id auto
+    url text
+    owner text
+}
+
+table Scan {
+    id auto
+    target text
+    status text
+}
+
+table Finding {
+    id auto
+    target text
+    severity text
+}
+
+table Report {
+    id auto
+    title text
+    status text
+}
+
+export Target

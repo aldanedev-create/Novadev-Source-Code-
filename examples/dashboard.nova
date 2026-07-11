@@ -1,0 +1,119 @@
+app BusinessAdmin {
+    theme CyberDark {
+        background "#0f172a"
+        panel "#111827"
+        panel_alt "#1f2937"
+        accent "#38bdf8"
+        accent_alt "#10b981"
+        text "#ffffff"
+        muted "#94a3b8"
+        danger "#ef4444"
+        border "#334155"
+    }
+
+    use theme CyberDark
+
+    table User {
+        id auto
+        name text
+        email email unique
+        role text
+        password secure
+        created_at datetime
+    }
+
+    auth User
+
+    table Product {
+        id auto
+        name text
+        price money
+        stock int
+    }
+
+    table Sales {
+        id auto
+        created_at datetime
+        total money
+    }
+
+    route GET "/api/users" {
+        require auth
+        return User.all()
+    }
+
+    route POST "/api/products" {
+        require role Admin
+        return Product.create(request.body)
+    }
+
+    page AdminDashboard {
+        require role Admin
+        title "Admin Dashboard"
+
+        sidebar {
+            link "Dashboard" to "/admin-dashboard"
+            link "Products" to "/products"
+            link "Reports" to "/reports"
+        }
+
+        card "Total Users" {
+            value User.count()
+        }
+
+        card "Products" {
+            value Product.count()
+        }
+
+        card "Revenue" {
+            value Sales.sum(total)
+        }
+
+        table User {
+            columns name, email, role
+            actions view, edit, delete
+        }
+
+        chart Sales {
+            type line
+            x created_at
+            y total
+        }
+    }
+
+    page Products {
+        require auth
+        title "Products"
+
+        navbar {
+            link "Dashboard" to "/admin-dashboard"
+            link "Reports" to "/reports"
+        }
+
+        form Product {
+            fields name, price, stock
+            submit "Add Product"
+        }
+
+        table Product {
+            columns name, price, stock
+            actions view, edit, delete
+        }
+    }
+
+    page Reports {
+        require role Admin
+        title "Sales Reports"
+
+        chart Sales {
+            type bar
+            x created_at
+            y total
+        }
+
+        modal "Report Notes" {
+            text "NovaDev generated this modal from declarative UI code."
+            button "Done"
+        }
+    }
+}

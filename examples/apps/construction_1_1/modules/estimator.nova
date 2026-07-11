@@ -1,0 +1,13 @@
+module ConstructionEstimator python {
+    export estimate
+
+    python """
+def estimate(**payload):
+    square_feet = float(payload.get("squareFeet", 1000))
+    finish = str(payload.get("finish", "standard")).lower()
+    multiplier = {"basic": 0.88, "standard": 1.0, "premium": 1.25}.get(finish, 1.0)
+    return round(square_feet * 118 * multiplier, 2)
+"""
+}
+
+export ConstructionEstimator

@@ -1,0 +1,38 @@
+custom backend {
+    python """
+LABOR_RATES = {
+    "renovation": 48,
+    "roofing": 55,
+    "commercial": 72,
+    "residential": 60,
+}
+
+
+def estimate_project_cost(project_type, square_feet, finish_level="standard"):
+    rate = LABOR_RATES.get(str(project_type).lower(), 52)
+    finish_multiplier = {
+        "basic": 0.86,
+        "standard": 1.0,
+        "premium": 1.28,
+    }.get(str(finish_level).lower(), 1.0)
+    material_cost = float(square_feet) * 38 * finish_multiplier
+    labor_cost = float(square_feet) * rate
+    contingency = (material_cost + labor_cost) * 0.12
+    return round(material_cost + labor_cost + contingency, 2)
+
+
+def estimate_timeline_weeks(square_feet, crew_size=5):
+    crew = max(int(crew_size), 1)
+    return max(2, round(float(square_feet) / (crew * 220)))
+
+
+def qualify_lead(budget, timeline_weeks):
+    if float(budget) >= 50000 and int(timeline_weeks) <= 20:
+        return "priority"
+    if float(budget) >= 15000:
+        return "standard"
+    return "small-project"
+"""
+}
+
+export estimating

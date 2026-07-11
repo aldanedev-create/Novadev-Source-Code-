@@ -1,0 +1,37 @@
+page Dashboard {
+    title "Apple Dashboard"
+    type dashboard
+
+    sidebar {
+        link "Products" to "/dashboard/products"
+        link "Orders" to "/dashboard/orders"
+        link "Reviews" to "/dashboard/reviews"
+        link "Settings" to "/settings"
+    }
+
+    card "Revenue" {
+        value "$18,420"
+    }
+
+    card "Orders" {
+        value "128"
+    }
+
+    card "Products" {
+        value "42"
+    }
+
+    card "Cart Items" {
+        value "19"
+    }
+
+    table Product {
+        columns name category price stock badge
+        actions edit delete
+    }
+
+    table Order {
+        columns customerName email total status
+        actions view update
+    }
+}

@@ -1,0 +1,12 @@
+app PluginDemo {
+    frontend Vue
+    backend Flask
+    database SQLite
+
+    plugin "@nova/auth"
+    plugin "@nova/email"
+
+    page Dashboard {
+        title "Plugin Demo"
+    }
+}

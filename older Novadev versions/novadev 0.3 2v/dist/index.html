@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="app.js"></script>
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="brand-mark">N</span>
+                <div>
+                    <strong>BusinessAdmin</strong>
+                    <small>NovaDev 0.3</small>
+                </div>
+            </div>
+            <nav class="nav-list"><a class="nav-link" href="#/dashboard">Business Dashboard</a>
+<a class="nav-link" href="#/products">Product Manager</a></nav>
+        </aside>
+        <main class="workspace">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">Generated admin workspace</p>
+                    <h1 id="pageTitle">Business Dashboard</h1>
+                </div>
+                <div class="toolbar">
+                    <label for="roleSelect">Role</label>
+                    <select id="roleSelect"><option value="Admin">Admin</option>
+<option value="Editor">Editor</option>
+<option value="User">User</option></select>
+                    <button id="themeToggle" type="button">Theme</button>
+                </div>
+            </header>
+            <section class="access-warning" id="accessWarning">
+                <strong>Access restricted.</strong>
+                <span>This page requires <span id="requiredRole"></span>.</span>
+            </section>
+            <section class="page" data-route="/dashboard" data-title="Business Dashboard" data-required-role="Admin">
+
+
+<nav class="inline-links"><a href="#/dashboard">Dashboard</a>
+<a href="#/products">Products</a></nav>
+<article class="metric-card">
+    <span>Products</span>
+    <strong data-bind="Product.count()">Product.count()</strong>
+</article>
+<article class="metric-card">
+    <span>Orders</span>
+    <strong data-bind="Order.count()">Order.count()</strong>
+</article>
+<section class="panel">
+    <div class="panel-heading"><h2>Order Chart</h2><span>bar</span></div>
+    <canvas data-chart="Order" data-chart-type="bar" data-x="customer" data-y="total"></canvas>
+</section>
+<section class="panel">
+    <div class="panel-heading"><h2>Product</h2><span>Table</span></div>
+    <div class="table-scroll">
+        <table data-table="Product" data-columns="name,price,stock,active" data-actions="view,edit,delete">
+            <thead></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</section>
+</section>
+<section class="page" data-route="/products" data-title="Product Manager" data-required-role="Admin">
+
+
+<nav class="inline-links"><a href="#/dashboard">Dashboard</a>
+<a href="#/products">Products</a></nav>
+<form class="panel data-form" data-form="Product" data-fields="name,price,stock,active">
+    <div class="panel-heading"><h2>Product Form</h2><span>Input</span></div>
+    <div class="form-grid" data-form-fields></div>
+    <div class="form-actions"><button type="submit">Add Product</button></div>
+</form>
+<section class="panel">
+    <div class="panel-heading"><h2>Product</h2><span>Table</span></div>
+    <div class="table-scroll">
+        <table data-table="Product" data-columns="name,price,stock,active" data-actions="view,delete">
+            <thead></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</section>
+<button class="primary-button" data-open-modal="modal-product-help" type="button">Product Help</button>
+<dialog id="modal-product-help">
+    <div class="modal-panel">
+        <h2>Product Help</h2>
+        <p>Use this page to add, inspect, and remove product rows.</p>
+        <button data-close-modal type="button">Got it</button>
+    </div>
+</dialog>
+</section>
+        </main>
+    </div>
+</body>
+</html>

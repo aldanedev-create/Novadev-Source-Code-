@@ -1,0 +1,14 @@
+import models.*
+import pages.*
+import workflows.*
+import modules.*
+
+app GymCustomOneOne {
+    project {
+        frontend Vue
+        backend Flask
+        database SQLite
+        structure VueFlask
+        mode custom
+    }
+}

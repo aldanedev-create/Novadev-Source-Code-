@@ -1,0 +1,34 @@
+{
+  "NovaDev app": {
+    "prefix": "app",
+    "body": [
+      "app ${1:MyApp} {",
+      "    mode ${2:custom}",
+      "",
+      "    page ${3:Home} {",
+      "        type ${4:landing}",
+      "    }",
+      "}"
+    ],
+    "description": "Create a NovaDev app block"
+  },
+  "NovaDev table": {
+    "prefix": "table",
+    "body": [
+      "table ${1:Product} {",
+      "    id auto",
+      "    name text",
+      "}"
+    ],
+    "description": "Create a NovaDev table"
+  },
+  "NovaDev function": {
+    "prefix": "function",
+    "body": [
+      "function ${1:name}(${2:value}) {",
+      "    return ${2:value}",
+      "}"
+    ],
+    "description": "Create a NovaDev function"
+  }
+}

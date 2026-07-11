@@ -1,0 +1,22 @@
+# Normal programming syntax in NovaDev 0.3
+let x = 0
+
+while x < 3 {
+    print("loop " + x)
+    x = x + 1
+}
+
+if x == 3 {
+    print("done")
+} else {
+    print("not done")
+}
+
+function greet(name) {
+    return "Hello " + name
+}
+
+print(greet("Aldane"))
+
+
+print(3+1)

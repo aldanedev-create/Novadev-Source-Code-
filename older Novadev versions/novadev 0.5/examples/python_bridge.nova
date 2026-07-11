@@ -1,0 +1,24 @@
+# Safe Python standard-library bridge through Nova.*.
+
+use Nova.math
+use Nova.random
+use Nova.json
+use Nova.files
+use Nova.uuid
+
+let root = Nova.math.sqrt(81)
+print("Square root: {root}")
+
+let dice = Nova.random.randint(1, 6)
+print("Dice roll: {dice}")
+
+let order = {
+    id: Nova.uuid.uuid4(),
+    total: 42
+}
+
+let encoded = Nova.json.pretty(order)
+print(encoded)
+
+Nova.files.write("generated_notes/order.json", encoded)
+print("Wrote generated_notes/order.json")

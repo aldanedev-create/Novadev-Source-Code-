@@ -1,0 +1,13 @@
+page Home {
+    title "BuildRight Construction"
+
+    card "Completed Projects" {
+        value Project.count()
+    }
+
+    card "Core Services" {
+        value Service.count()
+    }
+}
+
+export Home

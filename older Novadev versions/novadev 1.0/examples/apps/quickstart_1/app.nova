@@ -1,0 +1,19 @@
+app Quickstart1 {
+    project {
+        frontend Vue
+        backend Flask
+        database SQLite
+        structure VueFlask
+        mode app
+
+        architecture {
+            folder docs
+            folder tests
+            folder uploads
+        }
+    }
+
+    page Dashboard {
+        title "Quickstart1 Dashboard"
+    }
+}

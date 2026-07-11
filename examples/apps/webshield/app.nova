@@ -1,0 +1,61 @@
+import app.models.*
+import app.pages.*
+
+app WebShield {
+    project {
+        frontend Vue
+        backend Flask
+        database SQLite
+        structure VueFlask
+        mode app
+
+        architecture {
+            folder app
+            folder app/models
+            folder app/routes
+            folder app/services
+            folder app/security
+            folder app/utils
+            folder app/components
+            folder app/pages
+            folder app/layouts
+            folder app/scanner
+            folder docs
+            folder tests
+            folder uploads
+            file Dockerfile
+            file docker-compose.yml
+            python app/utils/FileTools.py
+            javascript app/components/animations.js
+            css app/components/dashboard.css
+        }
+    }
+
+    plugin "@nova/auth"
+    plugin "@nova/charts"
+
+    custom backend {
+        python """
+def custom_health_check():
+    return {"status": "ok"}
+"""
+    }
+
+    custom frontend {
+        js """
+console.log("WebShield custom frontend logic");
+"""
+    }
+
+    custom css {
+        """
+.scan-card {
+    border-radius: 12px;
+}
+"""
+    }
+
+    route GET "/api/health" {
+        return "WebShield ready"
+    }
+}

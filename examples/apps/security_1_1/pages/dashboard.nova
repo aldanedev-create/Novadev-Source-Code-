@@ -1,0 +1,10 @@
+page Dashboard {
+    type dashboard
+    section Targets from Target
+    table Finding {
+        columns target, severity
+        actions view, edit
+    }
+}
+
+export Dashboard

@@ -1,0 +1,9 @@
+[
+  {
+    "name": "Products",
+    "path": "/products",
+    "title": "Products",
+    "requiresAuth": false,
+    "requiredRole": null
+  }
+]

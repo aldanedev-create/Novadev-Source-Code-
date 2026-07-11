@@ -1,0 +1,19 @@
+class Person {
+    function init(name) {
+        self.name = name
+    }
+
+    function speak() {
+        return "Hello {self.name}"
+    }
+}
+
+class Admin extends Person {
+    function role() {
+        return "admin"
+    }
+}
+
+let user = Admin("Aldane")
+print(user.speak())
+print(user.role())

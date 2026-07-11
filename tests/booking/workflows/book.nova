@@ -1,0 +1,7 @@
+workflow CreateBooking {
+    input Booking
+    uses BookingTools.confirm
+    creates Booking
+}
+
+export CreateBooking

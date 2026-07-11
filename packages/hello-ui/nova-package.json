@@ -1,0 +1,11 @@
+{
+  "name": "hello-ui",
+  "version": "0.1.0",
+  "description": "Example NovaDev UI helpers and starter page declarations.",
+  "entry": "index.nova",
+  "kind": "module",
+  "files": [
+    "index.nova",
+    "README.md"
+  ]
+}

@@ -1,0 +1,6 @@
+# NovaDev 0.3 hello world
+let name = "Aldane"
+print("Hello " + name)
+
+let score = 10
+print(score + 5)

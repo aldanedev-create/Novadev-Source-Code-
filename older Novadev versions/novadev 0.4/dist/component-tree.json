@@ -1,0 +1,44 @@
+{
+  "app": "ProductDesk",
+  "theme": null,
+  "routes": [
+    {
+      "name": "Products",
+      "path": "/products",
+      "title": "Products",
+      "requiresAuth": false,
+      "requiredRole": null
+    }
+  ],
+  "pages": [
+    {
+      "name": "Products",
+      "path": "/products",
+      "title": "Products",
+      "requiresAuth": false,
+      "requiredRole": null,
+      "components": [
+        {
+          "type": "form",
+          "table": "Product",
+          "fields": [],
+          "submitLabel": "Save"
+        },
+        {
+          "type": "table",
+          "table": "Product",
+          "columns": [
+            "name",
+            "price",
+            "stock"
+          ],
+          "actions": [
+            "view",
+            "edit",
+            "delete"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+table CartItem {
+    id auto
+    productName text
+    quantity number
+    price number
+}

@@ -1,0 +1,19 @@
+app ProductDesk {
+    table Product {
+        id auto
+        name text
+        price money
+        stock int
+    }
+
+    page Products {
+        title "Products"
+
+        form Product
+
+        table Product {
+            columns name, price, stock
+            actions view, edit, delete
+        }
+    }
+}

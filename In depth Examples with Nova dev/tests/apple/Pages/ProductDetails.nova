@@ -1,0 +1,24 @@
+page ProductDetails {
+    title "Apple Product Details"
+    type detail
+
+    card "Crisp Taste" {
+        value "Sweet and fresh"
+    }
+
+    card "Farm Source" {
+        value "Local orchard"
+    }
+
+    card "Delivery" {
+        value "1-2 days"
+    }
+
+    table Review {
+        columns customer product rating comment
+        actions view
+    }
+
+    button "Add to Cart" to "/shop"
+    button "Checkout" to "/checkout"
+}

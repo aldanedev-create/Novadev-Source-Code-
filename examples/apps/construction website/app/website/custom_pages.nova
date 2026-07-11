@@ -1,0 +1,218 @@
+filesystem {
+    file frontend/src/pages/Home.vue {
+        text """
+<script setup>
+import { computed, onMounted, ref } from 'vue'
+import api from '../services/api'
+
+const services = ref([])
+const projects = ref([])
+const squareFeet = ref(1800)
+const projectType = ref('Residential')
+const finishLevel = ref('Standard')
+
+const fallbackServices = [
+  { id: 1, name: 'Residential Builds', description: 'New homes, additions, and full renovations.', category: 'Residential', startingPrice: 85000 },
+  { id: 2, name: 'Commercial Fit-Outs', description: 'Offices, retail spaces, restaurants, and upgrades.', category: 'Commercial', startingPrice: 120000 },
+  { id: 3, name: 'Roofing And Repairs', description: 'Roof replacement, storm repairs, and waterproofing.', category: 'Roofing', startingPrice: 18000 }
+]
+
+const fallbackProjects = [
+  { id: 1, name: 'Harbor View Residence', location: 'Kingston', serviceType: 'Residential', budget: 185000, status: 'Completed' },
+  { id: 2, name: 'North Coast Retail Plaza', location: 'Ocho Rios', serviceType: 'Commercial', budget: 420000, status: 'In Progress' },
+  { id: 3, name: 'Mandeville Roof Renewal', location: 'Mandeville', serviceType: 'Roofing', budget: 38000, status: 'Completed' }
+]
+
+const estimateRate = computed(() => {
+  if (projectType.value === 'Commercial') return 165
+  if (projectType.value === 'Roofing') return 74
+  return 118
+})
+
+const estimateTotal = computed(() => {
+  const total = window.BuildRight?.estimate(squareFeet.value, estimateRate.value) || Number(squareFeet.value) * estimateRate.value
+  if (finishLevel.value === 'Premium') return Math.round(total * 1.22)
+  if (finishLevel.value === 'Basic') return Math.round(total * 0.88)
+  return total
+})
+
+function money(value) {
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(Number(value || 0))
+}
+
+function submitLead() {
+  window.BuildRight?.toast('Quote request saved in the construction lead flow')
+}
+
+async function loadSiteData() {
+  try {
+    const serviceData = await api.list('services')
+    services.value = serviceData.rows?.length ? serviceData.rows : fallbackServices
+  } catch (error) {
+    services.value = fallbackServices
+  }
+
+  try {
+    const projectData = await api.list('projects')
+    projects.value = projectData.rows?.length ? projectData.rows : fallbackProjects
+  } catch (error) {
+    projects.value = fallbackProjects
+  }
+}
+
+onMounted(loadSiteData)
+</script>
+
+<template>
+  <div class="construction-site">
+    <nav class="site-nav">
+      <RouterLink to="/" class="brand-lockup">
+        <span class="brand-mark">BR</span>
+        <span>BuildRight Construction</span>
+      </RouterLink>
+      <div class="site-links">
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#process">Process</a>
+        <a href="#estimate" class="quote-link">Get Quote</a>
+      </div>
+    </nav>
+
+    <section class="construction-hero">
+      <div class="hero-copy">
+        <p class="eyebrow">NovaDev multi-file construction website</p>
+        <h1>Reliable building teams for homes, commercial spaces, and repairs.</h1>
+        <p>Built from several NovaDev modules with imported pages, models, routes, custom CSS, custom JavaScript, and backend Python estimating tools.</p>
+        <div class="hero-actions">
+          <a class="primary-action" href="#estimate">Request Estimate</a>
+          <a class="secondary-action" href="#projects">View Projects</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <span class="beam one"></span>
+        <span class="beam two"></span>
+        <span class="tower"></span>
+        <span class="slab"></span>
+      </div>
+    </section>
+
+    <section class="stats-row">
+      <article class="stat-card">
+        <strong>{{ projects.length }}+</strong>
+        <span>tracked projects</span>
+      </article>
+      <article class="stat-card">
+        <strong>{{ services.length }}</strong>
+        <span>core services</span>
+      </article>
+      <article class="stat-card">
+        <strong>24h</strong>
+        <span>quote response</span>
+      </article>
+      <article class="stat-card">
+        <strong>1.0</strong>
+        <span>NovaDev generated</span>
+      </article>
+    </section>
+
+    <div class="section-title" id="services">
+      <p class="eyebrow">What we build</p>
+      <h2>Construction services</h2>
+    </div>
+
+    <section class="service-grid">
+      <article v-for="service in services" :key="service.id" class="service-card">
+        <span class="service-icon">{{ String(service.category || service.name).slice(0, 2).toUpperCase() }}</span>
+        <h3>{{ service.name }}</h3>
+        <p>{{ service.description }}</p>
+        <strong>Starting at {{ money(service.startingPrice) }}</strong>
+      </article>
+    </section>
+
+    <div class="section-title" id="projects">
+      <p class="eyebrow">Selected work</p>
+      <h2>Recent projects</h2>
+    </div>
+
+    <section class="project-grid">
+      <article v-for="project in projects" :key="project.id" class="project-card">
+        <div class="project-art"></div>
+        <h3>{{ project.name }}</h3>
+        <p>{{ project.location }} / {{ project.serviceType }}</p>
+        <strong>{{ money(project.budget) }}</strong>
+        <span>{{ project.status }}</span>
+      </article>
+    </section>
+
+    <div class="section-title" id="process">
+      <p class="eyebrow">How it works</p>
+      <h2>From idea to handoff</h2>
+    </div>
+
+    <section class="process-grid">
+      <article class="process-card">
+        <h3>1. Site Walkthrough</h3>
+        <p>We collect scope, measurements, constraints, and budget expectations.</p>
+      </article>
+      <article class="process-card">
+        <h3>2. Estimate And Schedule</h3>
+        <p>Nova-wrapped Python modules demonstrate how estimating logic can live beside the app.</p>
+      </article>
+      <article class="process-card">
+        <h3>3. Build And Report</h3>
+        <p>The generated backend keeps project, lead, and service data ready for dashboards.</p>
+      </article>
+    </section>
+
+    <section class="estimate-section" id="estimate">
+      <article class="estimate-card">
+        <p class="eyebrow">Instant estimate</p>
+        <h2>Plan your project</h2>
+        <label>
+          Project type
+          <select v-model="projectType">
+            <option>Residential</option>
+            <option>Commercial</option>
+            <option>Roofing</option>
+          </select>
+        </label>
+        <label>
+          Square feet
+          <input v-model="squareFeet" type="number" min="200" />
+        </label>
+        <label>
+          Finish level
+          <select v-model="finishLevel">
+            <option>Basic</option>
+            <option>Standard</option>
+            <option>Premium</option>
+          </select>
+        </label>
+        <div class="estimate-total">
+          <span>Estimated budget</span>
+          <strong>{{ money(estimateTotal) }}</strong>
+        </div>
+      </article>
+
+      <form class="lead-form" @submit.prevent="submitLead">
+        <p class="eyebrow">Start a build</p>
+        <h2>Request a quote</h2>
+        <label>Name<input placeholder="Your name" /></label>
+        <label>Email<input placeholder="you@example.com" /></label>
+        <label>Phone<input placeholder="(000) 000-0000" /></label>
+        <label>Message<textarea placeholder="Tell us about the project"></textarea></label>
+        <button type="submit">Send Request</button>
+      </form>
+    </section>
+
+    <footer class="site-footer">
+      <strong>BuildRight Construction</strong>
+      <p>Generated with NovaDev 1.0 from multiple `.nova` files.</p>
+    </footer>
+  </div>
+</template>
+"""
+    }
+}
+
+export custom_pages

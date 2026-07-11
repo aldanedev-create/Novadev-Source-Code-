@@ -1,0 +1,864 @@
+{
+  "name": "Apple",
+  "mode": "ecommerce",
+  "frontend": "Vue",
+  "backend": "Flask",
+  "database": "SQLite",
+  "styling": "Tailwind",
+  "style": {
+    "system": "Tailwind",
+    "mode": "ecommerce",
+    "primary": "#0f766e",
+    "accent": "#ef4444",
+    "surface": "#ffffff",
+    "text": "#0f172a",
+    "muted": "#64748b",
+    "radius": "small",
+    "density": "compact",
+    "font": "Inter",
+    "shell": "min-h-screen bg-[var(--nova-surface)] text-[var(--nova-text)] lg:grid lg:grid-cols-[17rem_1fr]",
+    "sidebar": "bg-slate-950 text-white p-5 flex flex-col gap-5",
+    "topbar": "min-h-16 border-b border-slate-200 bg-white/90 px-6 flex items-center justify-between gap-4 backdrop-blur",
+    "page": "p-6 grid content-start gap-5",
+    "hero": "min-h-72 rounded-nova bg-gradient-to-br from-amber-300 via-orange-500 to-slate-950 p-8 text-slate-950 grid content-end gap-4",
+    "panel": "overflow-hidden rounded-nova border border-slate-200 bg-white shadow-sm",
+    "card": "rounded-nova border border-slate-200 bg-white p-5 shadow-sm",
+    "button": "inline-flex min-h-10 items-center justify-center rounded-md bg-amber-400 px-4 py-2 font-bold text-slate-950 hover:bg-amber-300",
+    "ghost_button": "inline-flex min-h-10 items-center justify-center rounded-nova bg-slate-100 px-4 py-2 font-semibold text-slate-700 hover:bg-slate-200",
+    "input": "min-h-10 rounded-nova border border-slate-300 bg-white px-3 py-2 outline-none focus:border-[var(--nova-primary)]",
+    "table": "w-full border-collapse text-left text-sm",
+    "badge": "rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700",
+    "notes": [
+      "style system: Tailwind",
+      "mode profile: ecommerce",
+      "theme overrides applied",
+      "css radius: 0.375rem"
+    ]
+  },
+  "entities": [
+    {
+      "name": "CartItem",
+      "fields": [
+        {
+          "name": "id",
+          "type": "auto",
+          "attributes": []
+        },
+        {
+          "name": "productName",
+          "type": "text",
+          "attributes": []
+        },
+        {
+          "name": "quantity",
+          "type": "number",
+          "attributes": []
+        },
+        {
+          "name": "price",
+          "type": "number",
+          "attributes": []
+        }
+      ]
+    },
+    {
+      "name": "Order",
+      "fields": [
+        {
+          "name": "id",
+          "type": "auto",
+          "attributes": []
+        },
+        {
+          "name": "customerName",
+          "type": "text",
+          "attributes": []
+        },
+        {
+          "name": "email",
+          "type": "text",
+          "attributes": []
+        },
+        {
+          "name": "address",
+          "type": "text",
+          "attributes": []
+        },
+        {
+          "name": "total",
+          "type": "number",
+          "attributes": []
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "attributes": []
+        }
+      ]
+    },
+    {
+      "name": "Product",
+      "fields": [
+        {
+          "name": "id",
+          "type": "auto",
+          "attributes": []
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "attributes": []
+        },
+        {
+          "name": "category",
+          "type": "text",
+          "attributes": []
+        },
+        {
+          "name": "price",
+          "type": "number",
+          "attributes": []
+        },
+        {
+          "name": "oldPrice",
+          "type": "number",
+          "attributes": []
+        },
+        {
+          "name": "image",
+          "type": "text",
+          "attributes": []
+        },
+        {
+          "name": "rating",
+          "type": "number",
+          "attributes": []
+        },
+        {
+          "name": "stock",
+          "type": "number",
+          "attributes": []
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "attributes": []
+        },
+        {
+          "name": "badge",
+          "type": "text",
+          "attributes": []
+        }
+      ]
+    },
+    {
+      "name": "Review",
+      "fields": [
+        {
+          "name": "id",
+          "type": "auto",
+          "attributes": []
+        },
+        {
+          "name": "customer",
+          "type": "text",
+          "attributes": []
+        },
+        {
+          "name": "product",
+          "type": "text",
+          "attributes": []
+        },
+        {
+          "name": "rating",
+          "type": "number",
+          "attributes": []
+        },
+        {
+          "name": "comment",
+          "type": "text",
+          "attributes": []
+        }
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "Bundles",
+      "title": "Apple Bundles",
+      "type": "landing",
+      "route": "/bundles",
+      "sections": [],
+      "hero": {
+        "title": "Apple Bundles For Every Home",
+        "subtitle": "Choose starter, family, office, or juice boxes with fresh orchard selections.",
+        "action": "Start Bundle",
+        "to": "/checkout"
+      },
+      "components": [
+        {
+          "kind": "title",
+          "name": "Apple Bundles",
+          "props": {}
+        },
+        {
+          "kind": "type",
+          "name": "landing",
+          "props": {}
+        },
+        {
+          "kind": "hero",
+          "name": "",
+          "props": {
+            "title": "Apple Bundles For Every Home",
+            "subtitle": "Choose starter, family, office, or juice boxes with fresh orchard selections.",
+            "action": "Start Bundle",
+            "to": "/checkout"
+          }
+        },
+        {
+          "kind": "card",
+          "name": "Starter Box",
+          "props": {
+            "value": {
+              "value": "6 apples"
+            }
+          }
+        },
+        {
+          "kind": "card",
+          "name": "Family Box",
+          "props": {
+            "value": {
+              "value": "18 apples"
+            }
+          }
+        },
+        {
+          "kind": "card",
+          "name": "Office Box",
+          "props": {
+            "value": {
+              "value": "48 apples"
+            }
+          }
+        },
+        {
+          "kind": "card",
+          "name": "Juice Pack",
+          "props": {
+            "value": {
+              "value": "Apples plus cider"
+            }
+          }
+        },
+        {
+          "kind": "form",
+          "name": "CartItem",
+          "props": {
+            "fields": [
+              "productName",
+              "quantity",
+              "price"
+            ],
+            "submit": "Add Bundle"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Checkout",
+      "title": "Checkout",
+      "type": "checkout",
+      "route": "/checkout",
+      "sections": [],
+      "hero": {},
+      "components": [
+        {
+          "kind": "title",
+          "name": "Checkout",
+          "props": {}
+        },
+        {
+          "kind": "type",
+          "name": "checkout",
+          "props": {}
+        },
+        {
+          "kind": "card",
+          "name": "Secure Checkout",
+          "props": {
+            "value": {
+              "value": "Fast order review"
+            }
+          }
+        },
+        {
+          "kind": "card",
+          "name": "Delivery Window",
+          "props": {
+            "value": {
+              "value": "Choose your day"
+            }
+          }
+        },
+        {
+          "kind": "checkout",
+          "name": "Order",
+          "props": {
+            "fields": [
+              "customerName",
+              "email",
+              "address",
+              "total",
+              "status"
+            ],
+            "submit": "Place Order"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "title": "Apple Dashboard",
+      "type": "dashboard",
+      "route": "/dashboard",
+      "sections": [],
+      "hero": {},
+      "components": [
+        {
+          "kind": "title",
+          "name": "Apple Dashboard",
+          "props": {}
+        },
+        {
+          "kind": "type",
+          "name": "dashboard",
+          "props": {}
+        },
+        {
+          "kind": "sidebar",
+          "name": "",
+          "props": {}
+        },
+        {
+          "kind": "card",
+          "name": "Revenue",
+          "props": {
+            "value": {
+              "value": "$18,420"
+            }
+          }
+        },
+        {
+          "kind": "card",
+          "name": "Orders",
+          "props": {
+            "value": {
+              "value": "128"
+            }
+          }
+        },
+        {
+          "kind": "card",
+          "name": "Products",
+          "props": {
+            "value": {
+              "value": "42"
+            }
+          }
+        },
+        {
+          "kind": "card",
+          "name": "Cart Items",
+          "props": {
+            "value": {
+              "value": "19"
+            }
+          }
+        },
+        {
+          "kind": "table",
+          "name": "Product",
+          "props": {
+            "columns": [
+              "name",
+              "category",
+              "price",
+              "stock",
+              "badge"
+            ],
+            "actions": [
+              "edit",
+              "delete"
+            ]
+          }
+        },
+        {
+          "kind": "table",
+          "name": "Order",
+          "props": {
+            "columns": [
+              "customerName",
+              "email",
+              "total",
+              "status"
+            ],
+            "actions": [
+              "view",
+              "update"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Home",
+      "title": "Apple Market",
+      "type": "landing",
+      "route": "/home",
+      "sections": [],
+      "hero": {
+        "title": "Fresh Apples Delivered Fast",
+        "subtitle": "Premium orchard apples, gift boxes, juice packs, and weekly fruit bundles for homes, cafes, and offices.",
+        "action": "Shop Apples",
+        "to": "/shop"
+      },
+      "components": [
+        {
+          "kind": "title",
+          "name": "Apple Market",
+          "props": {}
+        },
+        {
+          "kind": "type",
+          "name": "landing",
+          "props": {}
+        },
+        {
+          "kind": "navbar",
+          "name": "",
+          "props": {}
+        },
+        {
+          "kind": "hero",
+          "name": "",
+          "props": {
+            "title": "Fresh Apples Delivered Fast",
+            "subtitle": "Premium orchard apples, gift boxes, juice packs, and weekly fruit bundles for homes, cafes, and offices.",
+            "action": "Shop Apples",
+            "to": "/shop"
+          }
+        },
+        {
+          "kind": "card",
+          "name": "Honeycrisp Boxes",
+          "props": {
+            "value": {
+              "value": "$24.99"
+            },
+            "text": {
+              "value": "Sweet, crisp apples packed for families and cafes."
+            }
+          }
+        },
+        {
+          "kind": "card",
+          "name": "Organic Green Apples",
+          "props": {
+            "value": {
+              "value": "$18.50"
+            },
+            "text": {
+              "value": "Tart green apples from local orchards."
+            }
+          }
+        },
+        {
+          "kind": "card",
+          "name": "Family Fruit Bundle",
+          "props": {
+            "value": {
+              "value": "$39.99"
+            },
+            "text": {
+              "value": "A curated weekly apple box for the whole home."
+            }
+          }
+        },
+        {
+          "kind": "button",
+          "name": "Build a Box",
+          "props": {
+            "to": "/bundles"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ProductDetails",
+      "title": "Apple Product Details",
+      "type": "detail",
+      "route": "/product-details",
+      "sections": [],
+      "hero": {},
+      "components": [
+        {
+          "kind": "title",
+          "name": "Apple Product Details",
+          "props": {}
+        },
+        {
+          "kind": "type",
+          "name": "detail",
+          "props": {}
+        },
+        {
+          "kind": "card",
+          "name": "Crisp Taste",
+          "props": {
+            "value": {
+              "value": "Sweet and fresh"
+            }
+          }
+        },
+        {
+          "kind": "card",
+          "name": "Farm Source",
+          "props": {
+            "value": {
+              "value": "Local orchard"
+            }
+          }
+        },
+        {
+          "kind": "card",
+          "name": "Delivery",
+          "props": {
+            "value": {
+              "value": "1-2 days"
+            }
+          }
+        },
+        {
+          "kind": "table",
+          "name": "Review",
+          "props": {
+            "columns": [
+              "customer",
+              "product",
+              "rating",
+              "comment"
+            ],
+            "actions": [
+              "view"
+            ]
+          }
+        },
+        {
+          "kind": "button",
+          "name": "Add to Cart",
+          "props": {
+            "to": "/shop"
+          }
+        },
+        {
+          "kind": "button",
+          "name": "Checkout",
+          "props": {
+            "to": "/checkout"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reviews",
+      "title": "Customer Reviews",
+      "type": "landing",
+      "route": "/reviews",
+      "sections": [],
+      "hero": {},
+      "components": [
+        {
+          "kind": "title",
+          "name": "Customer Reviews",
+          "props": {}
+        },
+        {
+          "kind": "type",
+          "name": "landing",
+          "props": {}
+        },
+        {
+          "kind": "card",
+          "name": "Average Rating",
+          "props": {
+            "value": {
+              "value": "4.9 / 5"
+            }
+          }
+        },
+        {
+          "kind": "card",
+          "name": "Repeat Customers",
+          "props": {
+            "value": {
+              "value": "82%"
+            }
+          }
+        },
+        {
+          "kind": "card",
+          "name": "Orders Delivered",
+          "props": {
+            "value": {
+              "value": "12400+"
+            }
+          }
+        },
+        {
+          "kind": "table",
+          "name": "Review",
+          "props": {
+            "columns": [
+              "customer",
+              "product",
+              "rating",
+              "comment"
+            ],
+            "actions": [
+              "view"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Settings",
+      "title": "Apple Settings",
+      "type": "dashboard",
+      "route": "/settings",
+      "sections": [],
+      "hero": {},
+      "components": [
+        {
+          "kind": "title",
+          "name": "Apple Settings",
+          "props": {}
+        },
+        {
+          "kind": "type",
+          "name": "dashboard",
+          "props": {}
+        },
+        {
+          "kind": "card",
+          "name": "Store Status",
+          "props": {
+            "value": {
+              "value": "Open"
+            }
+          }
+        },
+        {
+          "kind": "card",
+          "name": "Delivery Region",
+          "props": {
+            "value": {
+              "value": "Citywide"
+            }
+          }
+        },
+        {
+          "kind": "card",
+          "name": "Payment Mode",
+          "props": {
+            "value": {
+              "value": "Online and Cash"
+            }
+          }
+        },
+        {
+          "kind": "form",
+          "name": "Product",
+          "props": {
+            "fields": [
+              "name",
+              "category",
+              "price",
+              "oldPrice",
+              "image",
+              "rating",
+              "stock",
+              "description",
+              "badge"
+            ],
+            "submit": "Save Product"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Shop",
+      "title": "Shop Apples",
+      "type": "catalog",
+      "route": "/shop",
+      "sections": [],
+      "hero": {},
+      "components": [
+        {
+          "kind": "title",
+          "name": "Shop Apples",
+          "props": {}
+        },
+        {
+          "kind": "type",
+          "name": "catalog",
+          "props": {}
+        },
+        {
+          "kind": "card",
+          "name": "Free Delivery",
+          "props": {
+            "value": {
+              "value": "Orders over $50"
+            }
+          }
+        },
+        {
+          "kind": "card",
+          "name": "Today Only",
+          "props": {
+            "value": {
+              "value": "10% off bundles"
+            }
+          }
+        },
+        {
+          "kind": "card",
+          "name": "Customer Rating",
+          "props": {
+            "value": {
+              "value": "4.9 stars"
+            }
+          }
+        },
+        {
+          "kind": "catalog",
+          "name": "Product",
+          "props": {
+            "actions": [
+              "view",
+              "add_to_cart",
+              "favorite"
+            ],
+            "fields": [
+              "name",
+              "category",
+              "price",
+              "rating",
+              "stock",
+              "badge"
+            ]
+          }
+        },
+        {
+          "kind": "cart",
+          "name": "CartItem",
+          "props": {
+            "fields": [
+              "productName",
+              "quantity",
+              "price"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "workflows": [
+    {
+      "name": "AddToCart",
+      "input": "CartItem",
+      "uses": "",
+      "creates": [
+        "CartItem"
+      ],
+      "steps": [
+        {
+          "kind": "input",
+          "name": "CartItem",
+          "props": {}
+        },
+        {
+          "kind": "creates",
+          "name": "CartItem",
+          "props": {}
+        },
+        {
+          "kind": "notify",
+          "name": "Customer",
+          "props": {}
+        }
+      ]
+    },
+    {
+      "name": "Checkout",
+      "input": "Order",
+      "uses": "",
+      "creates": [
+        "Order"
+      ],
+      "steps": [
+        {
+          "kind": "input",
+          "name": "Order",
+          "props": {}
+        },
+        {
+          "kind": "creates",
+          "name": "Order",
+          "props": {}
+        },
+        {
+          "kind": "notify",
+          "name": "Admin",
+          "props": {}
+        }
+      ]
+    }
+  ],
+  "modules": [],
+  "custom_code": [
+    {
+      "name": "AppleStoreDesign",
+      "language": "css",
+      "target": "css",
+      "code": "body { background: #f8fafc; color: #0f172a; font-family: Inter, system-ui, sans-serif; } .hero { color: white; } .card { border-radius: 16px; box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08); } button { border-radius: 999px; font-weight: 800; } table { border-radius: 16px; overflow: hidden; background: white; }"
+    }
+  ],
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/api/products",
+      "requiresAuth": false,
+      "role": null
+    },
+    {
+      "method": "GET",
+      "path": "/api/cart",
+      "requiresAuth": false,
+      "role": null
+    },
+    {
+      "method": "POST",
+      "path": "/api/orders",
+      "requiresAuth": false,
+      "role": null
+    }
+  ],
+  "plugins": [],
+  "notes": [
+    "mode ecommerce: Online store projects with products, carts, checkout, and orders."
+  ]
+}

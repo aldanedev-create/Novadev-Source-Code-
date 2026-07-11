@@ -1,0 +1,13 @@
+page Dashboard {
+    type dashboard
+    card "Students" {
+        value Student.count()
+    }
+    section Courses from Course
+    table Grade {
+        columns studentName, courseTitle, score
+        actions view, edit
+    }
+}
+
+export Dashboard

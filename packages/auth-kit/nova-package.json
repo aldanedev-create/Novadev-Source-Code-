@@ -1,0 +1,11 @@
+{
+  "name": "auth-kit",
+  "version": "0.1.0",
+  "description": "Starter auth declarations for NovaDev apps.",
+  "entry": "index.nova",
+  "kind": "module",
+  "files": [
+    "index.nova",
+    "README.md"
+  ]
+}

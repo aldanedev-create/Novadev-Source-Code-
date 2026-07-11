@@ -1,0 +1,28 @@
+app VueSecuritySaaS {
+    stack VueFastAPI
+    database SQLite
+
+    table Incident {
+        id auto
+        title text
+        severity text
+        status text
+        owner text
+    }
+
+    page Dashboard {
+        title "Security Dashboard"
+        card "Incidents" {
+            value Incident.count()
+        }
+        chart Incident {
+            type bar
+            x severity
+            y id
+        }
+        table Incident {
+            columns title, severity, status, owner
+            actions edit, delete
+        }
+    }
+}

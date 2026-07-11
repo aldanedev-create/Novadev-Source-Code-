@@ -1,0 +1,27 @@
+{
+  "name": "Apple",
+  "version": "1.1",
+  "frontend": "Vue",
+  "backend": "Flask",
+  "database": "SQLite",
+  "mode": "ecommerce",
+  "styling": "Tailwind",
+  "style": {
+    "system": "Tailwind",
+    "mode": "ecommerce",
+    "primary": "#0f766e",
+    "accent": "#ef4444",
+    "surface": "#ffffff",
+    "radius": "small",
+    "density": "compact"
+  },
+  "plugins": [],
+  "customCode": [
+    {
+      "language": "css",
+      "target": "css",
+      "bytes": 310
+    }
+  ],
+  "discoveries": []
+}

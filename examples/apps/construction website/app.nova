@@ -1,0 +1,30 @@
+import app.models.*
+import app.pages.Home
+import app.pages.*
+import app.routes.*
+import app.modules.*
+import app.website.*
+
+app BuildRightConstruction {
+    project {
+        frontend Vue
+        backend Flask
+        database SQLite
+        structure VueFlask
+        mode website
+
+        architecture {
+            folder frontend/src/custom
+            folder frontend/src/pages
+            folder backend/custom
+            folder database
+            folder docs
+        }
+    }
+
+    plugin "@nova/seo"
+    plugin "@nova/forms"
+    plugin "@nova/estimating"
+
+    allow unsafe_python false
+}

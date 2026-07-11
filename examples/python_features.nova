@@ -1,0 +1,57 @@
+# NovaDev 0.4 programming features.
+
+let name = "Aldane"
+print("Hello {name}")
+
+let scores = [91, 76, 88]
+scores.add(100)
+print("Score count: {scores.length}")
+
+for score in scores {
+    if score >= 90 {
+        print("Excellent: {score}")
+    } elif score >= 80 {
+        print("Good: {score}")
+    } else {
+        print("Keep practicing: {score}")
+    }
+}
+
+let total = 0
+let index = 0
+while index < scores.length() {
+    total = total + scores.pop()
+    index = index + 1
+}
+print("Total after popping scores: {total}")
+
+let user = {
+    name: "Mira",
+    role: "Admin"
+}
+user.email = "mira@example.com"
+print("{user.name} is an {user.role}")
+
+function discount(price) {
+    return price * 0.9
+}
+print(discount(120))
+
+class Customer {
+    function init(name) {
+        self.name = name
+    }
+
+    function label() {
+        return "Customer {self.name}"
+    }
+}
+
+let customer = Customer("Aldane")
+print(customer.label())
+
+try {
+    print(missingVariable)
+} catch NovaNameError {
+    print("Caught a missing variable clearly")
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaCommerce Store</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="app.js"></script>
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="brand-mark">N</span>
+                <div>
+                    <strong>NovaCommerce</strong>
+                    <small>NovaDev 0.3</small>
+                </div>
+            </div>
+            <nav class="nav-list"><a class="nav-link" href="#/shop">NovaCommerce Store</a>
+<a class="nav-link" href="#/cart">Cart And Checkout</a>
+<a class="nav-link" href="#/orders">Order History</a>
+<a class="nav-link" href="#/admin">Store Admin</a></nav>
+        </aside>
+        <main class="workspace">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">Generated admin workspace</p>
+                    <h1 id="pageTitle">NovaCommerce Store</h1>
+                </div>
+                <div class="toolbar">
+                    <label for="roleSelect">Role</label>
+                    <select id="roleSelect"><option value="Admin">Admin</option>
+<option value="Editor">Editor</option>
+<option value="User">User</option></select>
+                    <button id="themeToggle" type="button">Theme</button>
+                </div>
+            </header>
+            <section class="access-warning" id="accessWarning">
+                <strong>Access restricted.</strong>
+                <span>This page requires <span id="requiredRole"></span>.</span>
+            </section>
+            <section class="page" data-route="/shop" data-title="NovaCommerce Store">
+
+<nav class="inline-links"><a href="#/shop">Shop</a>
+<a href="#/cart">Cart</a>
+<a href="#/admin">Admin</a></nav>
+<article class="metric-card">
+    <span>Products In Stock</span>
+    <strong data-bind="Product.count()">Product.count()</strong>
+</article>
+<section class="commerce-section catalog-section" data-catalog="Product">
+    <div class="commerce-heading">
+        <div>
+            <span>Shop</span>
+            <h2>Featured Products</h2>
+        </div>
+        <input data-product-search type="search" placeholder="Search products">
+    </div>
+    <div class="product-grid" data-product-grid></div>
+</section>
+</section>
+<section class="page" data-route="/cart" data-title="Cart And Checkout">
+
+<nav class="inline-links"><a href="#/shop">Shop</a>
+<a href="#/cart">Cart</a>
+<a href="#/orders">Orders</a></nav>
+<section class="commerce-section cart-section" data-cart="CartItem">
+    <div class="commerce-heading">
+        <div>
+            <span>Your bag</span>
+            <h2>Shopping Cart</h2>
+        </div>
+        <button class="secondary-button" data-cart-clear type="button">Clear Cart</button>
+    </div>
+    <div class="cart-list" data-cart-items></div>
+    <div class="cart-summary">
+        <span>Total</span>
+        <strong data-cart-total>$0.00</strong>
+    </div>
+</section>
+<form class="commerce-section checkout-form" data-checkout="Order" data-fields="customerName,email,address">
+    <div class="commerce-heading">
+        <div>
+            <span>Secure checkout</span>
+            <h2>Checkout</h2>
+        </div>
+    </div>
+    <div class="form-grid" data-checkout-fields></div>
+    <div class="form-actions"><button type="submit">Place Order</button></div>
+</form>
+</section>
+<section class="page" data-route="/orders" data-title="Order History">
+
+<section class="panel">
+    <div class="panel-heading"><h2>Order</h2><span>Table</span></div>
+    <div class="table-scroll">
+        <table data-table="Order" data-columns="customerName,email,total,status" data-actions="view">
+            <thead></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</section>
+<section class="panel">
+    <div class="panel-heading"><h2>OrderItem</h2><span>Table</span></div>
+    <div class="table-scroll">
+        <table data-table="OrderItem" data-columns="orderId,productName,price,quantity" data-actions="view">
+            <thead></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</section>
+</section>
+<section class="page" data-route="/admin" data-title="Store Admin" data-required-role="Admin">
+
+
+<article class="metric-card">
+    <span>Orders</span>
+    <strong data-bind="Order.count()">Order.count()</strong>
+</article>
+<form class="panel data-form" data-form="Product" data-fields="name,description,category,price,stock,active">
+    <div class="panel-heading"><h2>Product Form</h2><span>Input</span></div>
+    <div class="form-grid" data-form-fields></div>
+    <div class="form-actions"><button type="submit">Add Product</button></div>
+</form>
+<section class="panel">
+    <div class="panel-heading"><h2>Product</h2><span>Table</span></div>
+    <div class="table-scroll">
+        <table data-table="Product" data-columns="name,category,price,stock,active" data-actions="view,edit,delete">
+            <thead></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</section>
+<section class="panel">
+    <div class="panel-heading"><h2>Customer</h2><span>Table</span></div>
+    <div class="table-scroll">
+        <table data-table="Customer" data-columns="customerName,email,phone" data-actions="view">
+            <thead></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</section>
+</section>
+        </main>
+    </div>
+</body>
+</html>

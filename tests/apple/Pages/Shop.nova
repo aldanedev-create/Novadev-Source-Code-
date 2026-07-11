@@ -1,0 +1,25 @@
+page Shop {
+    title "Shop Apples"
+    type catalog
+
+    card "Free Delivery" {
+        value "Orders over $50"
+    }
+
+    card "Today Only" {
+        value "10% off bundles"
+    }
+
+    card "Customer Rating" {
+        value "4.9 stars"
+    }
+
+    catalog Product {
+        fields name category price rating stock badge
+        actions view add_to_cart favorite
+    }
+
+    cart CartItem {
+        fields productName quantity price
+    }
+}

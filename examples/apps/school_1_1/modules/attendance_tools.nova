@@ -1,0 +1,10 @@
+module AttendanceTools python {
+    export normalize_status
+
+    python """
+def normalize_status(**payload):
+    return str(payload.get("status", "present")).strip().lower()
+"""
+}
+
+export AttendanceTools

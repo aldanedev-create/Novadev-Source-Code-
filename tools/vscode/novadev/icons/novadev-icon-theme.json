@@ -1,0 +1,13 @@
+{
+  "iconDefinitions": {
+    "_novadev": {
+      "iconPath": "./novadev.svg"
+    }
+  },
+  "fileExtensions": {
+    "nova": "_novadev"
+  },
+  "languageIds": {
+    "novadev": "_novadev"
+  }
+}

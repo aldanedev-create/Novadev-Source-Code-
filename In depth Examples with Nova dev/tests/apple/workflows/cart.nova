@@ -1,0 +1,5 @@
+workflow AddToCart {
+    input CartItem
+    creates CartItem
+    notify Customer
+}

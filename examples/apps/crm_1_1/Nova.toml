@@ -1,0 +1,6 @@
+name = "CrmOneOne"
+version = "1.1"
+entry = "app.nova"
+frontend = "Vue"
+backend = "Flask"
+database = "SQLite"

@@ -1,0 +1,34 @@
+page Home {
+    title "Apple Market"
+    type landing
+
+    navbar {
+        link "Shop" to "/shop"
+        link "Bundles" to "/bundles"
+        link "Reviews" to "/reviews"
+        link "Dashboard" to "/dashboard"
+    }
+
+    hero {
+        title "Fresh Apples Delivered Fast"
+        subtitle "Premium orchard apples, gift boxes, juice packs, and weekly fruit bundles for homes, cafes, and offices."
+        action "Shop Apples" to "/shop"
+    }
+
+    card "Honeycrisp Boxes" {
+        value "$24.99"
+        text "Sweet, crisp apples packed for families and cafes."
+    }
+
+    card "Organic Green Apples" {
+        value "$18.50"
+        text "Tart green apples from local orchards."
+    }
+
+    card "Family Fruit Bundle" {
+        value "$39.99"
+        text "A curated weekly apple box for the whole home."
+    }
+
+    button "Build a Box" to "/bundles"
+}

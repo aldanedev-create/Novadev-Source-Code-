@@ -1,0 +1,17 @@
+route GET "/api/site/services" {
+    return Service.all()
+}
+
+route GET "/api/site/projects" {
+    return Project.all()
+}
+
+route GET "/api/site/leads/count" {
+    return Lead.count()
+}
+
+route GET "/api/site/portfolio/count" {
+    return Project.count()
+}
+
+export public_api

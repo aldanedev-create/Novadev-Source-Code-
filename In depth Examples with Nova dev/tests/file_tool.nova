@@ -1,0 +1,6 @@
+let path = "generated_notes/novadev-1.txt"
+Nova.files.write(path, "NovaDev 1.0 file tool\n")
+Nova.files.append(path, "Generated from script mode.\n")
+Nova.files.write(path,"new programming Language\n")
+Nova.files.delete(path)
+print(Nova.files.read(path))

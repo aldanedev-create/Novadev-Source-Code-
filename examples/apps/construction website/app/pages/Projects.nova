@@ -1,0 +1,10 @@
+page Projects {
+    title "Project Portfolio"
+
+    table Project {
+        columns name, location, serviceType, budget, status
+        actions view, edit, delete
+    }
+}
+
+export Projects

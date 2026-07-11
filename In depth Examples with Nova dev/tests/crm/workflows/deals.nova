@@ -1,0 +1,8 @@
+workflow MoveDealStage {
+    input Deal
+    uses DealTools.next_stage
+    creates Task
+    validates stage
+}
+
+export MoveDealStage

@@ -1,0 +1,6 @@
+name = "Quickstart1"
+version = "1.0"
+entry = "app.nova"
+frontend = "Vue"
+backend = "Flask"
+database = "SQLite"

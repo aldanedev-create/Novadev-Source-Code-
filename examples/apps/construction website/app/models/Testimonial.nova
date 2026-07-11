@@ -1,0 +1,9 @@
+table Testimonial {
+    id auto
+    clientName text
+    projectName text
+    rating int
+    quote text
+}
+
+export Testimonial

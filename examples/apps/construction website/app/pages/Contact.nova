@@ -1,0 +1,10 @@
+page Contact {
+    title "Request A Quote"
+
+    form Lead {
+        fields name, email, phone, projectType, budget, message
+        submit "Request Estimate"
+    }
+}
+
+export Contact

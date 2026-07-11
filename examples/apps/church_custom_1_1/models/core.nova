@@ -1,0 +1,15 @@
+table Sermon {
+    id auto
+    title text
+    speaker text
+    videoUrl text
+}
+
+table PrayerRequest {
+    id auto
+    name text
+    message text
+    status text
+}
+
+export Sermon

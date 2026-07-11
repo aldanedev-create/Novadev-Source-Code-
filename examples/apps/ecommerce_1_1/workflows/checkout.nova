@@ -1,0 +1,9 @@
+workflow Checkout {
+    input CartItem
+    uses CartMath.calculate_total
+    creates Order
+    clears CartItem
+    validates stock
+}
+
+export Checkout

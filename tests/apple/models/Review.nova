@@ -1,0 +1,7 @@
+table Review {
+    id auto
+    customer text
+    product text
+    rating number
+    comment text
+}

@@ -1,0 +1,9 @@
+table Service {
+    id auto
+    name text
+    description text
+    category text
+    startingPrice money
+}
+
+export Service

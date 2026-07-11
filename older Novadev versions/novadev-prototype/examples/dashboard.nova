@@ -1,0 +1,174 @@
+app BusinessAdmin {
+    theme CyberDark {
+        background "#0f172a"
+        panel "#111827"
+        panel_alt "#1f2937"
+        accent "#38bdf8"
+        accent_alt "#10b981"
+        text "#ffffff"
+        muted "#94a3b8"
+        danger "#ef4444"
+        border "#334155"
+    }
+
+    use theme CyberDark
+
+    table User {
+        id auto
+        name text
+        email email unique
+        role enum(Admin, Manager, Staff)
+        password secure
+        created_at datetime
+    }
+
+    auth User
+
+    table Product {
+        id auto
+        name text
+        category text
+        price money
+        stock int
+        status enum(Active, LowStock, OutOfStock)
+        created_at datetime
+    }
+
+    table Sale {
+        id auto
+        product Product
+        quantity int
+        total money
+        created_at datetime
+    }
+
+    route GET "/api/users" {
+        require role Admin
+        return User.all()
+    }
+
+    route GET "/api/products" {
+        require auth
+        return Product.all()
+    }
+
+    route POST "/api/products" {
+        require role Admin
+        return Product.create(request.body)
+    }
+
+    route GET "/api/sales" {
+        require role Admin
+        return Sale.all()
+    }
+
+    page AdminDashboard {
+        require role Admin
+        title "Business Admin Dashboard"
+
+        sidebar {
+            link "Dashboard" to "/admin-dashboard"
+            link "Products" to "/products"
+            link "Reports" to "/reports"
+            link "Users" to "/users"
+            link "Settings" to "/settings"
+        }
+
+        card "Total Users" {
+            value User.count()
+        }
+
+        card "Products" {
+            value Product.count()
+        }
+
+        card "Low Stock" {
+            value Product.where(status = LowStock).count()
+        }
+
+        card "Revenue" {
+            value Sale.sum(total)
+        }
+
+        chart Sale {
+            type line
+            x created_at
+            y total
+        }
+
+        table Product {
+            columns name, category, price, stock, status
+            actions view, edit, delete
+        }
+    }
+
+    page Products {
+        require role Admin
+        title "Product Management"
+
+        navbar {
+            link "Dashboard" to "/admin-dashboard"
+            link "Reports" to "/reports"
+            link "Users" to "/users"
+        }
+
+        form Product {
+            fields name, category, price, stock, status
+            submit "Add Product"
+        }
+
+        table Product {
+            columns name, category, price, stock, status
+            actions view, edit, delete
+        }
+    }
+
+    page Users {
+        require role Admin
+        title "User Management"
+
+        form User {
+            fields name, email, role, password
+            submit "Create User"
+        }
+
+        table User {
+            columns name, email, role, created_at
+            actions view, edit, delete
+        }
+    }
+
+    page Reports {
+        require role Admin
+        title "Sales Reports"
+
+        chart Sale {
+            type bar
+            x created_at
+            y total
+        }
+
+        table Sale {
+            columns product, quantity, total, created_at
+            actions view
+        }
+
+        modal "Report Notes" {
+            text "NovaDev generated this report page from declarative UI code."
+            button "Done"
+        }
+    }
+
+    page Settings {
+        require role Admin
+        title "System Settings"
+
+        card "Security" {
+            value "Role-based access enabled"
+        }
+
+        card "Theme" {
+            value "CyberDark active"
+        }
+    }
+}

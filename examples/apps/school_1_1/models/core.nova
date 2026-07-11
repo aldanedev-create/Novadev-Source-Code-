@@ -1,0 +1,32 @@
+table Student {
+    id auto
+    name text
+    email email
+}
+
+table Teacher {
+    id auto
+    name text
+    subject text
+}
+
+table Course {
+    id auto
+    title text
+    teacher text
+}
+
+table Grade {
+    id auto
+    studentName text
+    courseTitle text
+    score number
+}
+
+table Attendance {
+    id auto
+    studentName text
+    status text
+}
+
+export Student

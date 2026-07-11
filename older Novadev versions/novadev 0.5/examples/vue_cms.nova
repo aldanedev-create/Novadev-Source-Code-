@@ -1,0 +1,35 @@
+app VueCMS {
+    project {
+        frontend Vue
+        backend Flask
+        database SQLite
+        structure VueFlask
+    }
+
+    table Post {
+        id auto
+        title text
+        slug text
+        body text
+        published boolean
+    }
+
+    page Dashboard {
+        title "CMS Dashboard"
+        card "Posts" {
+            value Post.count()
+        }
+    }
+
+    page Posts {
+        title "Posts"
+        form Post {
+            fields title, slug, body, published
+            submit "Save Post"
+        }
+        table Post {
+            columns title, slug, published
+            actions edit, delete
+        }
+    }
+}

@@ -1,0 +1,42 @@
+{
+  "name": "ProductDesk",
+  "auth": null,
+  "tables": {
+    "Product": {
+      "fields": [
+        {
+          "name": "id",
+          "kind": "auto",
+          "attributes": [],
+          "auto": true,
+          "secure": false,
+          "unique": false
+        },
+        {
+          "name": "name",
+          "kind": "text",
+          "attributes": [],
+          "auto": false,
+          "secure": false,
+          "unique": false
+        },
+        {
+          "name": "price",
+          "kind": "money",
+          "attributes": [],
+          "auto": false,
+          "secure": false,
+          "unique": false
+        },
+        {
+          "name": "stock",
+          "kind": "int",
+          "attributes": [],
+          "auto": false,
+          "secure": false,
+          "unique": false
+        }
+      ]
+    }
+  }
+}

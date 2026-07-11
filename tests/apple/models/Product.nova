@@ -1,0 +1,12 @@
+table Product {
+    id auto
+    name text
+    category text
+    price number
+    oldPrice number
+    image text
+    rating number
+    stock number
+    description text
+    badge text
+}

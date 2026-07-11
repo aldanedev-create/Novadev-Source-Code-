@@ -1,0 +1,21 @@
+page Reviews {
+    title "Customer Reviews"
+    type landing
+
+    card "Average Rating" {
+        value "4.9 / 5"
+    }
+
+    card "Repeat Customers" {
+        value "82%"
+    }
+
+    card "Orders Delivered" {
+        value "12400+"
+    }
+
+    table Review {
+        columns customer product rating comment
+        actions view
+    }
+}

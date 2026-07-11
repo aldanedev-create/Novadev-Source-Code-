@@ -1,0 +1,10 @@
+module PrayerTools python {
+    export clean_message
+
+    python """
+def clean_message(**payload):
+    return str(payload.get("message", "")).strip()
+"""
+}
+
+export PrayerTools

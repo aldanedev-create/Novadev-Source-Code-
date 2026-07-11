@@ -1,0 +1,8 @@
+table Order {
+    id auto
+    customerName text
+    email text
+    address text
+    total number
+    status text
+}

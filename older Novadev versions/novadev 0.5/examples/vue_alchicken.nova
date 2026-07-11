@@ -1,0 +1,67 @@
+app ALChicken {
+    project {
+        frontend Vue
+        backend Flask
+        database SQLite
+        structure VueFlask
+        docs Standard
+    }
+
+    table Product {
+        id auto
+        name text
+        price money
+        stock int
+        image text
+    }
+
+    table Order {
+        id auto
+        customer_name text
+        total money
+        status text
+    }
+
+    route GET "/api/products" {
+        return Product.all()
+    }
+
+    route POST "/api/products" {
+        require role Admin
+        return Product.create(request.body)
+    }
+
+    page Dashboard {
+        title "ALChicken Dashboard"
+        card "Products" {
+            value Product.count()
+        }
+        card "Orders" {
+            value Order.count()
+        }
+    }
+
+    page Products {
+        layout Dashboard
+        title "Products"
+
+        form Product {
+            fields name, price, stock, image
+            submit "Add Product"
+        }
+
+        table Product {
+            columns name, price, stock
+            actions view, edit, delete
+        }
+    }
+
+    page Orders {
+        layout Dashboard
+        title "Orders"
+        table Order {
+            columns customer_name, total, status
+            actions view, edit, delete
+        }
+    }
+}

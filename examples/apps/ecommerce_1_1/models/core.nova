@@ -1,0 +1,28 @@
+table Product {
+    id auto
+    name text
+    price money
+    stock int
+}
+
+table Customer {
+    id auto
+    name text
+    email email
+}
+
+table CartItem {
+    id auto
+    productName text
+    price money
+    quantity int
+}
+
+table Order {
+    id auto
+    customerName text
+    total money
+    status text
+}
+
+export Product

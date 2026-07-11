@@ -1,0 +1,9 @@
+table TeamMember {
+    id auto
+    name text
+    role text
+    specialty text
+    years int
+}
+
+export TeamMember

@@ -1,0 +1,31 @@
+page Bundles {
+    title "Apple Bundles"
+    type landing
+
+    hero {
+        title "Apple Bundles For Every Home"
+        subtitle "Choose starter, family, office, or juice boxes with fresh orchard selections."
+        action "Start Bundle" to "/checkout"
+    }
+
+    card "Starter Box" {
+        value "6 apples"
+    }
+
+    card "Family Box" {
+        value "18 apples"
+    }
+
+    card "Office Box" {
+        value "48 apples"
+    }
+
+    card "Juice Pack" {
+        value "Apples plus cider"
+    }
+
+    form CartItem {
+        fields productName quantity price
+        submit "Add Bundle"
+    }
+}

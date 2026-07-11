@@ -1,0 +1,36 @@
+app SecuritySaaS {
+    stack JQueryFlask
+    database sqlite
+    project saas
+
+    table Incident {
+        id auto
+        title text
+        severity text
+        status text
+        owner text
+    }
+
+    table AuditLog {
+        id auto
+        event text
+        actor text
+        createdAt text
+    }
+
+    page Dashboard {
+        title "Security Dashboard"
+        card "Open Incidents" {
+            value Incident.count()
+        }
+        table Incident {
+            columns id title severity status owner
+            actions create edit delete
+        }
+        chart Incident {
+            type bar
+            x severity
+            y id
+        }
+    }
+}

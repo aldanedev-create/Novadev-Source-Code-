@@ -1,0 +1,10 @@
+table Project {
+    id auto
+    name text
+    location text
+    serviceType text
+    budget money
+    status text
+}
+
+export Project

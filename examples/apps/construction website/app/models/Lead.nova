@@ -1,0 +1,11 @@
+table Lead {
+    id auto
+    name text
+    email email
+    phone text
+    projectType text
+    budget money
+    message text
+}
+
+export Lead

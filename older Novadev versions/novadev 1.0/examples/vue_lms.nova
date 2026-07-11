@@ -1,0 +1,42 @@
+app VueLMS {
+    stack VueFlask
+    database SQLite
+    project learning
+
+    table Course {
+        id auto
+        title text
+        instructor text
+        price money
+        active boolean
+    }
+
+    table Enrollment {
+        id auto
+        student_name text
+        email email
+        status text
+    }
+
+    page Dashboard {
+        title "Learning Dashboard"
+        card "Courses" {
+            value Course.count()
+        }
+        card "Enrollments" {
+            value Enrollment.count()
+        }
+    }
+
+    page Courses {
+        title "Courses"
+        form Course {
+            fields title, instructor, price, active
+            submit "Save Course"
+        }
+        table Course {
+            columns title, instructor, price, active
+            actions edit, delete
+        }
+    }
+}

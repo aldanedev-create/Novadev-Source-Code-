@@ -1,0 +1,57 @@
+# Generated Files
+
+NovaDev wrote or updated these files:
+
+- `generated\apple\frontend\package.json`
+- `generated\apple\frontend\vite.config.js`
+- `generated\apple\frontend\index.html`
+- `generated\apple\frontend\README.md`
+- `generated\apple\frontend\src\main.js`
+- `generated\apple\frontend\src\App.vue`
+- `generated\apple\frontend\src\router\index.js`
+- `generated\apple\frontend\src\stores\appStore.js`
+- `generated\apple\frontend\src\services\api.js`
+- `generated\apple\frontend\src\assets\main.css`
+- `generated\apple\frontend\src\components\Sidebar.vue`
+- `generated\apple\frontend\src\components\Navbar.vue`
+- `generated\apple\frontend\src\components\DataTable.vue`
+- `generated\apple\frontend\src\components\FormBuilder.vue`
+- `generated\apple\frontend\src\components\StatCard.vue`
+- `generated\apple\frontend\src\components\ChartBlock.vue`
+- `generated\apple\frontend\src\components\HeroBlock.vue`
+- `generated\apple\frontend\src\components\RecordSection.vue`
+- `generated\apple\frontend\src\components\CatalogGrid.vue`
+- `generated\apple\frontend\src\components\PipelineBoard.vue`
+- `generated\apple\frontend\src\components\WorkflowResult.vue`
+- `generated\apple\frontend\tailwind.config.js`
+- `generated\apple\frontend\src\pages\Bundles.vue`
+- `generated\apple\frontend\src\pages\Checkout.vue`
+- `generated\apple\frontend\src\pages\Dashboard.vue`
+- `generated\apple\frontend\src\pages\Home.vue`
+- `generated\apple\frontend\src\pages\ProductDetails.vue`
+- `generated\apple\frontend\src\pages\Reviews.vue`
+- `generated\apple\frontend\src\pages\Settings.vue`
+- `generated\apple\frontend\src\pages\Shop.vue`
+- `generated\apple\backend\requirements.txt`
+- `generated\apple\backend\config.py`
+- `generated\apple\backend\models.py`
+- `generated\apple\backend\routes.py`
+- `generated\apple\backend\app.py`
+- `generated\apple\backend\README.md`
+- `generated\apple\README.md`
+- `generated\apple\Nova.toml`
+- `generated\apple\docs\architecture.md`
+- `generated\apple\docs\plugins.md`
+- `generated\apple\docs\custom-code.md`
+- `generated\apple\docs\project-ir.json`
+- `generated\apple\docs\mode.md`
+- `generated\apple\docs\styling.md`
+- `generated\apple\docs\workflows.md`
+- `generated\apple\docs\modules.md`
+- `generated\apple\novadev.project.json`
+- `generated\apple\backend\database.db`
+- `generated\apple\frontend\src\custom\AppleStoreDesign.css`
+- `generated\apple\backend\routes.py`
+- `generated\apple\backend\workflows\__init__.py`
+- `generated\apple\backend\workflows\add_to_cart.py`
+- `generated\apple\backend\workflows\checkout.py`

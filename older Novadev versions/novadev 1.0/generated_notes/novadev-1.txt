@@ -1,0 +1,2 @@
+NovaDev 1.0 file tool
+Generated from script mode.

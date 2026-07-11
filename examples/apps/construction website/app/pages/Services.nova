@@ -1,0 +1,10 @@
+page Services {
+    title "Construction Services"
+
+    table Service {
+        columns name, category, startingPrice
+        actions view, edit
+    }
+}
+
+export Services

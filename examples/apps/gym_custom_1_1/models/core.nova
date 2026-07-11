@@ -1,0 +1,14 @@
+table Member {
+    id auto
+    name text
+    email email
+    plan text
+}
+
+table CheckIn {
+    id auto
+    memberName text
+    status text
+}
+
+export Member

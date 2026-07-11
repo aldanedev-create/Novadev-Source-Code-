@@ -1,0 +1,13 @@
+page Products {
+    title "Products From Imported Module"
+    form Product {
+        fields name, price, stock
+        submit "Add Product"
+    }
+    table Product {
+        columns name, price, stock
+        actions edit, delete
+    }
+}
+
+export default Products

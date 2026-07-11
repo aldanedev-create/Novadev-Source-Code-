@@ -1,0 +1,792 @@
+app AmazonClone {
+    project {
+        frontend Vue
+        backend Flask
+        database SQLite
+        structure VueFlask
+        mode ecommerce
+
+        architecture {
+            folder frontend/src/custom
+            folder frontend/src/assets
+            folder backend/custom
+            folder database
+            folder docs
+
+            file frontend/src/pages/StoreFront.vue {
+                text """
+<script setup>
+import { computed, onMounted, ref } from 'vue'
+import api from '../services/api'
+
+const products = ref([])
+const cart = ref([])
+const search = ref('')
+const activeCategory = ref('All')
+const loading = ref(true)
+
+const fallbackProducts = [
+  { id: 1, name: 'Echo Nova Speaker', description: 'Smart wireless speaker with room-filling sound.', category: 'Electronics', price: 79, stock: 31, rating: 4.7, badge: 'Best Seller' },
+  { id: 2, name: 'Kindle Style Reader', description: 'Portable reader with glare-free display and long battery life.', category: 'Devices', price: 119, stock: 18, rating: 4.8, badge: 'Prime Deal' },
+  { id: 3, name: 'Everyday Backpack', description: 'Water-resistant travel backpack with laptop storage.', category: 'Fashion', price: 45, stock: 42, rating: 4.5, badge: 'Limited Time' },
+  { id: 4, name: 'Kitchen Pro Mixer', description: 'Compact countertop mixer for home baking and meal prep.', category: 'Home', price: 139, stock: 12, rating: 4.6, badge: 'Choice' },
+  { id: 5, name: 'Gaming Headset X', description: 'Noise-isolating headset with clear mic and deep bass.', category: 'Gaming', price: 64, stock: 28, rating: 4.4, badge: 'Hot' },
+  { id: 6, name: 'Fitness Watch Lite', description: 'Track steps, heart rate, sleep, and daily workouts.', category: 'Sports', price: 89, stock: 22, rating: 4.3, badge: 'Deal' }
+]
+
+const categories = computed(() => ['All', ...new Set(products.value.map((item) => item.category || 'General'))])
+
+const filteredProducts = computed(() => {
+  const term = search.value.trim().toLowerCase()
+  return products.value.filter((product) => {
+    const matchesCategory = activeCategory.value === 'All' || product.category === activeCategory.value
+    const matchesSearch = !term || `${product.name} ${product.description} ${product.category}`.toLowerCase().includes(term)
+    return matchesCategory && matchesSearch
+  })
+})
+
+const cartTotal = computed(() => cart.value.reduce((sum, item) => sum + Number(item.price || 0), 0))
+
+function artClass(product) {
+  return `product-art product-art-${String(product.category || 'general').toLowerCase().replace(/[^a-z0-9]+/g, '-')}`
+}
+
+function addToCart(product) {
+  cart.value.push(product)
+  window.NovaAmazon?.toast(`${product.name} added to cart`)
+}
+
+function clearCart() {
+  cart.value = []
+}
+
+async function loadProducts() {
+  loading.value = true
+  try {
+    const data = await api.list('products')
+    const rows = data.rows || []
+    products.value = rows.length ? rows.map((row, index) => ({
+      ...fallbackProducts[index % fallbackProducts.length],
+      ...row,
+      id: row.id || index + 1,
+      rating: fallbackProducts[index % fallbackProducts.length].rating,
+      badge: fallbackProducts[index % fallbackProducts.length].badge
+    })) : fallbackProducts
+  } catch (error) {
+    products.value = fallbackProducts
+    window.NovaAmazon?.toast('Using local storefront products')
+  } finally {
+    loading.value = false
+  }
+}
+
+onMounted(loadProducts)
+</script>
+
+<template>
+  <div class="amazon-shell">
+    <header class="market-header">
+      <RouterLink to="/" class="market-logo">Nova<span>zon</span></RouterLink>
+      <div class="delivery-chip">Deliver to Jamaica</div>
+      <label class="market-search" aria-label="Search products">
+        <select v-model="activeCategory">
+          <option v-for="category in categories" :key="category">{{ category }}</option>
+        </select>
+        <input v-model="search" placeholder="Search Novazon" />
+        <button type="button">Search</button>
+      </label>
+      <div class="header-link">
+        <small>Hello, sign in</small>
+        <strong>Account</strong>
+      </div>
+      <div class="header-link">
+        <small>Returns</small>
+        <strong>& Orders</strong>
+      </div>
+      <a href="#cart" class="cart-link">Cart <strong>{{ cart.length }}</strong></a>
+    </header>
+
+    <nav class="market-nav">
+      <a href="#deals">Today's Deals</a>
+      <a href="#prime">Prime</a>
+      <a href="#electronics">Electronics</a>
+      <a href="#home">Home</a>
+      <a href="#fashion">Fashion</a>
+      <a href="#seller">Sell</a>
+    </nav>
+
+    <section class="hero-strip">
+      <div>
+        <p>NovaDev 1.0 custom storefront</p>
+        <h1>Amazon-style shopping experience generated from NovaDev</h1>
+        <span>High-level tables, pages, routes, and custom Vue/CSS/JS working together.</span>
+      </div>
+    </section>
+
+    <section class="promo-grid" id="deals">
+      <article>
+        <h2>Deals picked for you</h2>
+        <p>Custom cards written in NovaDev architecture code.</p>
+      </article>
+      <article>
+        <h2>Fast checkout flow</h2>
+        <p>Cart behavior comes from custom frontend code.</p>
+      </article>
+      <article>
+        <h2>Seller dashboard ready</h2>
+        <p>Backend models and routes are generated from tables.</p>
+      </article>
+    </section>
+
+    <main class="store-layout">
+      <aside class="filters-panel">
+        <h2>Shop by department</h2>
+        <button
+          v-for="category in categories"
+          :key="category"
+          :class="{ active: activeCategory === category }"
+          type="button"
+          @click="activeCategory = category"
+        >
+          {{ category }}
+        </button>
+      </aside>
+
+      <section class="product-section">
+        <div class="section-heading">
+          <div>
+            <p>Featured results</p>
+            <h2>{{ filteredProducts.length }} products</h2>
+          </div>
+          <span v-if="loading">Loading API products...</span>
+        </div>
+
+        <div class="product-grid">
+          <article v-for="product in filteredProducts" :key="product.id" class="product-card">
+            <div :class="artClass(product)">
+              <span>{{ product.category }}</span>
+            </div>
+            <div class="product-copy">
+              <span class="badge">{{ product.badge }}</span>
+              <h3>{{ product.name }}</h3>
+              <p>{{ product.description }}</p>
+              <div class="rating">***** <small>{{ product.rating }}</small></div>
+              <div class="price"><sup>$</sup>{{ product.price }}</div>
+              <small>{{ product.stock }} left in stock</small>
+              <button type="button" @click="addToCart(product)">Add to Cart</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <aside class="cart-panel" id="cart">
+        <h2>Cart</h2>
+        <p v-if="!cart.length">Your cart is ready for custom NovaDev logic.</p>
+        <ul v-else>
+          <li v-for="(item, index) in cart" :key="`${item.id}-${index}`">
+            <span>{{ item.name }}</span>
+            <strong>${{ item.price }}</strong>
+          </li>
+        </ul>
+        <div class="cart-total">
+          <span>Total</span>
+          <strong>${{ cartTotal }}</strong>
+        </div>
+        <button type="button" :disabled="!cart.length" @click="clearCart">Checkout</button>
+      </aside>
+    </main>
+  </div>
+</template>
+"""
+            }
+        }
+    }
+
+    plugin "@nova/payments"
+    plugin "@nova/reviews"
+    plugin "@nova/recommendations"
+
+    allow unsafe_python false
+
+    table Product {
+        id auto
+        name text
+        description text
+        category text
+        price money
+        stock int
+    }
+
+    table Customer {
+        id auto
+        name text
+        email email unique
+        address text
+        membership text
+    }
+
+    table CartItem {
+        id auto
+        productName text
+        price money
+        quantity int
+    }
+
+    table Order {
+        id auto
+        customerName text
+        email email
+        address text
+        total money
+        status text
+    }
+
+    table Review {
+        id auto
+        productName text
+        customerName text
+        rating int
+        comment text
+    }
+
+    page StoreFront {
+        title "Novazon Marketplace"
+        catalog Product {
+            fields name, description, category, price, stock
+            actions view, add_to_cart
+        }
+        cart CartItem {
+            fields productName, price, quantity
+        }
+        checkout Order {
+            fields customerName, email, address
+            submit "Place Order"
+        }
+    }
+
+    page Deals {
+        title "Today's Deals"
+        card "Featured Products" {
+            value Product.count()
+        }
+        table Product {
+            columns name, category, price, stock
+            actions view, edit, delete
+        }
+    }
+
+    page SellerDashboard {
+        title "Seller Dashboard"
+        card "Products" {
+            value Product.count()
+        }
+        card "Orders" {
+            value Order.count()
+        }
+        chart Product {
+            type bar
+            x category
+            y stock
+        }
+    }
+
+    route GET "/api/storefront/products" {
+        return Product.all()
+    }
+
+    route GET "/api/storefront/stats" {
+        return {
+            products: Product.count(),
+            orders: Order.count(),
+            reviews: Review.count()
+        }
+    }
+
+    custom backend {
+        python """
+def calculate_cart_total(items):
+    return sum(float(item.get("price", 0)) * int(item.get("quantity", 1)) for item in items)
+
+
+def free_shipping_message(total):
+    if total >= 35:
+        return "FREE delivery available"
+    return "Add more items for free delivery"
+"""
+    }
+
+    custom frontend {
+        js """
+window.NovaAmazon = {
+  toast(message) {
+    let toast = document.querySelector('.nova-toast')
+    if (!toast) {
+      toast = document.createElement('div')
+      toast.className = 'nova-toast'
+      document.body.appendChild(toast)
+    }
+    toast.textContent = message
+    toast.classList.add('show')
+    clearTimeout(window.__novaToastTimer)
+    window.__novaToastTimer = setTimeout(() => toast.classList.remove('show'), 1800)
+  }
+}
+
+window.addEventListener('scroll', () => {
+  document.body.classList.toggle('market-scrolled', window.scrollY > 8)
+})
+"""
+    }
+
+    custom css {
+        """
+:root {
+  --amazon-ink: #131921;
+  --amazon-nav: #232f3e;
+  --amazon-gold: #febd69;
+  --amazon-action: #ffd814;
+  --amazon-action-dark: #f7ca00;
+  --market-bg: #eaeded;
+  --market-card: #ffffff;
+  --market-text: #111827;
+}
+
+body {
+  margin: 0;
+  background: var(--market-bg);
+}
+
+.app-shell {
+  display: block;
+}
+
+.app-shell > .sidebar,
+.app-shell > .workspace > .topbar {
+  display: none;
+}
+
+.workspace {
+  margin: 0;
+  width: 100%;
+}
+
+.page {
+  padding: 0;
+}
+
+.page > .page-heading {
+  display: none;
+}
+
+.amazon-shell {
+  min-height: 100vh;
+  background: var(--market-bg);
+  color: var(--market-text);
+}
+
+.market-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: auto auto minmax(260px, 1fr) auto auto auto;
+  gap: 12px;
+  align-items: center;
+  min-height: 64px;
+  padding: 8px 18px;
+  background: var(--amazon-ink);
+  color: white;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.market-scrolled .market-header {
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.22);
+}
+
+.market-logo {
+  color: white;
+  font-size: 26px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.market-logo span {
+  color: var(--amazon-gold);
+}
+
+.delivery-chip,
+.header-link,
+.cart-link {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.header-link {
+  display: grid;
+  line-height: 1.15;
+}
+
+.header-link small {
+  color: #d1d5db;
+}
+
+.cart-link {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.market-search {
+  display: grid;
+  grid-template-columns: 150px 1fr 98px;
+  min-height: 42px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.market-search select,
+.market-search input,
+.market-search button {
+  border: 0;
+  font: inherit;
+}
+
+.market-search select {
+  padding: 0 10px;
+  background: #f3f4f6;
+}
+
+.market-search input {
+  min-width: 0;
+  padding: 0 14px;
+}
+
+.market-search button {
+  background: var(--amazon-gold);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.market-nav {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding: 9px 18px;
+  background: var(--amazon-nav);
+}
+
+.market-nav a {
+  color: white;
+  white-space: nowrap;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.hero-strip {
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  padding: 36px 5vw;
+  background:
+    linear-gradient(90deg, rgba(19, 25, 33, 0.92), rgba(19, 25, 33, 0.48)),
+    radial-gradient(circle at 80% 30%, #facc15 0 9%, transparent 10%),
+    linear-gradient(135deg, #0ea5e9, #f59e0b);
+  color: white;
+}
+
+.hero-strip p {
+  margin: 0 0 10px;
+  color: var(--amazon-gold);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.hero-strip h1 {
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(34px, 5vw, 62px);
+  line-height: 1;
+}
+
+.hero-strip span {
+  display: block;
+  max-width: 640px;
+  margin-top: 16px;
+  color: #f9fafb;
+  font-size: 18px;
+}
+
+.promo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 1220px;
+  margin: -46px auto 22px;
+  padding: 0 18px;
+  position: relative;
+  z-index: 2;
+}
+
+.promo-grid article,
+.filters-panel,
+.cart-panel,
+.product-card {
+  background: var(--market-card);
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.08);
+}
+
+.promo-grid article {
+  padding: 22px;
+}
+
+.promo-grid h2,
+.filters-panel h2,
+.cart-panel h2,
+.section-heading h2 {
+  margin: 0;
+}
+
+.promo-grid p {
+  margin: 8px 0 0;
+  color: #4b5563;
+}
+
+.store-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr) 280px;
+  gap: 18px;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 18px 36px;
+}
+
+.filters-panel,
+.cart-panel {
+  position: sticky;
+  top: 118px;
+  align-self: start;
+  padding: 18px;
+}
+
+.filters-panel {
+  display: grid;
+  gap: 8px;
+}
+
+.filters-panel button,
+.cart-panel button,
+.product-card button {
+  min-height: 38px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--amazon-action);
+  color: #111827;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.filters-panel button {
+  border-radius: 4px;
+  background: #f3f4f6;
+  text-align: left;
+  padding: 0 12px;
+}
+
+.filters-panel button.active {
+  background: var(--amazon-nav);
+  color: white;
+}
+
+.product-section {
+  min-width: 0;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 14px;
+}
+
+.section-heading p {
+  margin: 0;
+  color: #6b7280;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.product-card {
+  overflow: hidden;
+}
+
+.product-art {
+  min-height: 160px;
+  display: grid;
+  place-items: end start;
+  padding: 14px;
+  background: linear-gradient(135deg, #dbeafe, #93c5fd);
+}
+
+.product-art span {
+  background: rgba(255, 255, 255, 0.88);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.product-art-devices,
+.product-art-electronics {
+  background: linear-gradient(135deg, #bfdbfe, #60a5fa);
+}
+
+.product-art-fashion {
+  background: linear-gradient(135deg, #fce7f3, #f472b6);
+}
+
+.product-art-home {
+  background: linear-gradient(135deg, #dcfce7, #22c55e);
+}
+
+.product-art-gaming {
+  background: linear-gradient(135deg, #ede9fe, #8b5cf6);
+}
+
+.product-art-sports {
+  background: linear-gradient(135deg, #ffedd5, #fb923c);
+}
+
+.product-copy {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.badge {
+  width: max-content;
+  padding: 4px 8px;
+  background: #b12704;
+  color: white;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.product-copy h3,
+.product-copy p {
+  margin: 0;
+}
+
+.product-copy p {
+  color: #4b5563;
+  min-height: 44px;
+}
+
+.rating {
+  color: #f59e0b;
+  font-size: 14px;
+}
+
+.rating small {
+  color: #2563eb;
+}
+
+.price {
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.price sup {
+  font-size: 14px;
+}
+
+.product-card button:hover,
+.cart-panel button:hover {
+  background: var(--amazon-action-dark);
+}
+
+.cart-panel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.cart-panel li,
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.cart-total {
+  padding: 14px 0;
+  margin-top: 14px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.nova-toast {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 50;
+  transform: translateY(20px);
+  opacity: 0;
+  background: var(--amazon-ink);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 4px;
+  box-shadow: 0 14px 30px rgba(17, 24, 39, 0.25);
+  transition: 180ms ease;
+}
+
+.nova-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@media (max-width: 980px) {
+  .market-header {
+    grid-template-columns: 1fr auto;
+  }
+
+  .market-search {
+    grid-column: 1 / -1;
+    order: 4;
+  }
+
+  .delivery-chip,
+  .header-link {
+    display: none;
+  }
+
+  .promo-grid,
+  .store-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .filters-panel,
+  .cart-panel {
+    position: static;
+  }
+}
+"""
+    }
+
+    custom database {
+        sql """
+CREATE INDEX idx_product_category ON Product(category);
+CREATE INDEX idx_order_email ON Order(email);
+"""
+    }
+}

@@ -1,0 +1,50 @@
+# Generated Files
+
+NovaDev wrote or updated these files:
+
+- `generated\gym-custom-one-one\frontend\package.json`
+- `generated\gym-custom-one-one\frontend\vite.config.js`
+- `generated\gym-custom-one-one\frontend\index.html`
+- `generated\gym-custom-one-one\frontend\README.md`
+- `generated\gym-custom-one-one\frontend\src\main.js`
+- `generated\gym-custom-one-one\frontend\src\App.vue`
+- `generated\gym-custom-one-one\frontend\src\router\index.js`
+- `generated\gym-custom-one-one\frontend\src\stores\appStore.js`
+- `generated\gym-custom-one-one\frontend\src\services\api.js`
+- `generated\gym-custom-one-one\frontend\src\assets\main.css`
+- `generated\gym-custom-one-one\frontend\src\components\Sidebar.vue`
+- `generated\gym-custom-one-one\frontend\src\components\Navbar.vue`
+- `generated\gym-custom-one-one\frontend\src\components\DataTable.vue`
+- `generated\gym-custom-one-one\frontend\src\components\FormBuilder.vue`
+- `generated\gym-custom-one-one\frontend\src\components\StatCard.vue`
+- `generated\gym-custom-one-one\frontend\src\components\ChartBlock.vue`
+- `generated\gym-custom-one-one\frontend\src\components\HeroBlock.vue`
+- `generated\gym-custom-one-one\frontend\src\components\RecordSection.vue`
+- `generated\gym-custom-one-one\frontend\src\components\CatalogGrid.vue`
+- `generated\gym-custom-one-one\frontend\src\components\PipelineBoard.vue`
+- `generated\gym-custom-one-one\frontend\src\components\WorkflowResult.vue`
+- `generated\gym-custom-one-one\frontend\tailwind.config.js`
+- `generated\gym-custom-one-one\frontend\src\pages\Members.vue`
+- `generated\gym-custom-one-one\backend\requirements.txt`
+- `generated\gym-custom-one-one\backend\config.py`
+- `generated\gym-custom-one-one\backend\models.py`
+- `generated\gym-custom-one-one\backend\routes.py`
+- `generated\gym-custom-one-one\backend\app.py`
+- `generated\gym-custom-one-one\backend\README.md`
+- `generated\gym-custom-one-one\README.md`
+- `generated\gym-custom-one-one\Nova.toml`
+- `generated\gym-custom-one-one\docs\architecture.md`
+- `generated\gym-custom-one-one\docs\plugins.md`
+- `generated\gym-custom-one-one\docs\custom-code.md`
+- `generated\gym-custom-one-one\docs\project-ir.json`
+- `generated\gym-custom-one-one\docs\mode.md`
+- `generated\gym-custom-one-one\docs\styling.md`
+- `generated\gym-custom-one-one\docs\workflows.md`
+- `generated\gym-custom-one-one\docs\modules.md`
+- `generated\gym-custom-one-one\novadev.project.json`
+- `generated\gym-custom-one-one\backend\database.db`
+- `generated\gym-custom-one-one\backend\modules\gym_tools.py`
+- `generated\gym-custom-one-one\backend\modules\__init__.py`
+- `generated\gym-custom-one-one\backend\routes.py`
+- `generated\gym-custom-one-one\backend\workflows\__init__.py`
+- `generated\gym-custom-one-one\backend\workflows\member_check_in.py`

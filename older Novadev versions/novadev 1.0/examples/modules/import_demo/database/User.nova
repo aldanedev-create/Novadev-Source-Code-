@@ -1,0 +1,7 @@
+table User {
+    id auto
+    name text
+    email email
+}
+
+export User

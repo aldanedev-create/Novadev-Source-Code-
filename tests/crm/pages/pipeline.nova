@@ -1,0 +1,14 @@
+page Pipeline {
+    type pipeline
+    hero {
+        title "Sales pipeline"
+        subtitle "CRM mode creates deal-focused project intent"
+    }
+    section Deals from Deal
+    table Deal {
+        columns clientName, value, stage
+        actions view, edit
+    }
+}
+
+export Pipeline

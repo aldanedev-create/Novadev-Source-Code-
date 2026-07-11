@@ -1,0 +1,25 @@
+app NovaCMS {
+    stack JQueryFlask
+    database sqlite
+    project cms
+
+    table Post {
+        id auto
+        title text
+        slug text unique
+        body text
+        published boolean
+    }
+
+    page Editor {
+        title "Content Editor"
+        table Post {
+            columns id title slug published
+            actions create edit delete
+        }
+        form Post {
+            fields title slug body published
+            submit "Publish"
+        }
+    }
+}
